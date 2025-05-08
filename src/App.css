@@ -1,5 +1,47 @@
 .App {
   text-align: center;
+
+  background: var(--Page-Bg, linear-gradient(180deg, #F1F9FF 0%, #FFFDF6 100%));
+  background: var(--Page-Bg, linear-gradient(180deg, color(display-p3 0.9497 0.9757 1) 0%, color(display-p3 1 0.9929 0.9673) 100%));
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+
+  h1 {
+    font-family: Montserrat;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    /* 150% */
+    letter-spacing: 1px;
+  }
+
+  .subheader {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .skillsBadges {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.7px;
+  }
 }
 
 .App-logo {
@@ -32,6 +74,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

@@ -1,0 +1,112 @@
+.projectCard {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    border-radius: 30px;
+    align-items: stretch;
+    height: fit-content;
+
+    .imageGrid1 {
+        border-radius: 30px;
+        background: linear-gradient(0deg, #D2E7F6 0%, #FBF9FF 50%, #FFF4E0 100%);
+        background: linear-gradient(0deg, color(display-p3 0.8399 0.9042 0.9568) 0%, color(display-p3 0.9824 0.978 1) 50%, color(display-p3 1 0.9579 0.8852) 100%);
+        overflow: hidden;
+        height: 43.75em;
+
+        .image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* Keeps natural aspect ratio */
+        }
+
+        .hovering {
+            transform: scale(1.03);
+            z-index: 1;
+        }
+
+        display: flex;
+        align-items: stretch;
+    }
+
+    .imageGrid2 {
+        border-radius: 30px;
+        background: linear-gradient(180deg, #EFF7F1 0%, #FCEEFF 100%);
+        background: linear-gradient(180deg, color(display-p3 0.9422 0.9668 0.948) 0%, color(display-p3 0.9784 0.9352 1) 100%);
+        overflow: hidden;
+        height: 43.75em;
+
+        .image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* Keeps natural aspect ratio */
+        }
+
+        .hovering {
+            transform: scale(1.03);
+            z-index: 1;
+        }
+
+        display: flex;
+        align-items: stretch;
+    }
+
+    .text {
+        display: flex;
+        padding: 10px 80px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+        flex: 1 0 0;
+        align-self: stretch;
+
+        .projectTitle {
+            display: flex;
+            padding: 10px 0px;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 20px;
+            align-self: stretch;
+            text-align: left;
+
+            .number {
+                color: rgba(33, 33, 33, 0.50);
+                color: color(display-p3 0.1303 0.1303 0.1303 / 0.50);
+            }
+        }
+
+        .projectDescription {
+            display: flex;
+            padding: 10px 0px;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 40px;
+            align-self: stretch;
+            text-align: left;
+
+            .skills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px
+            }
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+.hovering {
+    background: rgba(0, 0, 0, 0.035);
+    cursor: pointer;
+}
