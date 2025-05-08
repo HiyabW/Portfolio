@@ -31,11 +31,11 @@ function Navbar() {
     const pages = [
         {
             name: "Projects",
-            link: "#projects"
+            link: currPage === "/" ? "#projects" : "/#projects"
         },
         {
             name: "About",
-            link: "#"
+            link: "/about"
         },
         {
             name: "Resume",
@@ -51,14 +51,13 @@ function Navbar() {
     return (
         <Box id="navbar">
             <Box>
-                <Typography className="navLogo"><a href={`${currPage==="/" ? "#homePage" : "/"}`}>Hw</a></Typography>
+                <Typography className="navLogo subheader"><a href={`${currPage === "/" ? "#homePage" : "/"}`}>Hw</a></Typography>
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <Typography className="navLink"><a href={`${currPage==="/" ? "#projects" : "/#projects"}`}>Projects</a></Typography>
-                <Typography className="navLink"><a href="/about">About</a></Typography>
-                <Typography className="navLink"><a href="https://drive.google.com/file/d/1FfE7ADeQH9Zn20GMBc1hPOQTqTLzfaE8/view?usp=sharing">Resume</a></Typography>
-                <Typography className="navLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Contact</a></Typography>
+                {pages.map((page) => (
+                    <Typography className="navLink"><a href={page.link}>{page.name}</a></Typography>
+                ))}
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
@@ -89,7 +88,7 @@ function Navbar() {
                 >
                     {pages.map((page) => (
                         <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                            <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
+                            <Typography sx={{ textAlign: 'center' }}><a href={page.link}>{page.name}</a></Typography>
                         </MenuItem>
                     ))}
                 </Menu>

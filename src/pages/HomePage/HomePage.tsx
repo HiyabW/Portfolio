@@ -7,9 +7,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography'
 import ProjectCard from "./components/ProjectCard/ProjectCard.tsx";
 import ContactIcons from "./components/ContactIcons/ContactIcons.tsx";
-import InfiniteDivCycle from "./components/RotatingDesc/RotatingDesc.tsx"
+import RotatingDesc from "./components/RotatingDesc/RotatingDesc.tsx"
 import { useLocation } from "react-router-dom";
 import framer, { motion } from 'framer-motion'
+import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
 
 function HomePage() {
   const projects = [
@@ -60,24 +61,33 @@ function HomePage() {
   const MotionBox = motion(Box); // Convert Stack to a motion component
 
   return (
-    <Stack id="homePage" spacing={10}>
+    <Stack id="homePage" spacing={0}>
       <Stack id="heroSection" spacing={10}>
         <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
           <Box
             id="hiAndName">
             <Typography>Hi, i'm</Typography>
             <Box id="name">
-              <Typography variant="h1">Heyab</Typography>
-              <Typography variant="h1">Woldegebriel</Typography>
+              <Typography variant="h1"><i>Heyab</i></Typography>
+              <Typography variant="h1"><i>Woldegebriel</i></Typography>
             </Box>
           </Box>
           <Typography className="introDesc">I'm a full stack developer with <b>2.5+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
-          <Box>
-            <InfiniteDivCycle />
-          </Box>
+          {/* <Box>
+            <RotatingDesc />
+          </Box> */}
         </MotionStack>
         <MotionBox {...motionDivProps(0.3, 1.4, 0.1, "spring")}>
           <ContactIcons />
+        </MotionBox >
+        <MotionBox 
+        initial= {{ opacity: 0 }}
+        animate= {{opacity: 1}}
+        transition= {{
+          duration: 0.3,
+          delay: 1.3
+        }}>
+          <ScrollIndicator />
         </MotionBox>
       </Stack>
       <MotionStack {...motionDivProps(0.6)} spacing={20} id="projects">

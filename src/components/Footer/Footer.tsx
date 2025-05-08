@@ -50,20 +50,20 @@ function Footer() {
     return (
         <Box id="footer">
             <Box>
-                <Typography className="footerLogo"><a href="#homePage">Heyab Woldegebriel</a></Typography>
-                <Typography className="footerDesc halfOpacity"><a href="#homePage">Fullstack Developer</a></Typography>
+                <Typography className="footerLogo subheader"><a href="#homePage">Heyab Woldegebriel</a></Typography>
+                <Typography className="footerDesc halfOpacity"><a href="#homePage">Frontend Developer</a></Typography>
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row' }}>
                 <Box sx={{ marginRight: '3rem' }}>
-                    <Typography className="navLink"><a href="#projects">Projects</a></Typography>
-                    <Typography className="navLink"><a href="/about">About</a></Typography>
-                    <Typography className="navLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Contact</a></Typography>
+                    <Typography className="footerLink"><a href="#projects">Projects</a></Typography>
+                    <Typography className="footerLink"><a href="/about">About</a></Typography>
+                    <Typography className="footerLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Contact</a></Typography>
                 </Box>
                 <Box>
-                    <Typography className="navLink"><a href="https://github.com/HiyabW">Github</a></Typography>
-                    <Typography className="navLink"><a href="https://www.linkedin.com/in/hiyab-woldegebriel-119009178/">LinkedIn</a></Typography>
-                    <Typography className="navLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Email</a></Typography>
+                    <Typography className="footerLink"><a href="https://github.com/HiyabW">Github</a></Typography>
+                    <Typography className="footerLink"><a href="https://www.linkedin.com/in/hiyab-woldegebriel-119009178/">LinkedIn</a></Typography>
+                    <Typography className="footerLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Email</a></Typography>
                 </Box>
             </Box>
         </Box>

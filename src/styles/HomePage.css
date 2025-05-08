@@ -1,7 +1,6 @@
 #homePage {
   width: 100%;
   padding-bottom: 40px;
-  padding-top:40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +8,11 @@
 
   #heroSection {
     border-radius: 30px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;
     /* padding: 60px 60px;
 
     background: linear-gradient(300deg, #cbf1ff, #c1d8ee, #ffe8f8);
@@ -31,7 +35,11 @@
     }
 
     #hiAndName {
-      gap: 10px;
+      gap: 40px;
+
+      .name {
+        font-family: 'Playfair Display';
+      }
     }
 
     .introDesc {

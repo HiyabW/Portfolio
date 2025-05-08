@@ -9,16 +9,14 @@
   padding-bottom: 40px;
 
   h1 {
-    font-family: 'Playfair Display';
-    font-size: 80px;
-    font-style: italic;
+    font-family: var(--primary-font);
+    font-size: 100px;
     font-weight: 700;
-    line-height: normal;
     text-transform: capitalize;
   }
 
   p {
-    font-family: 'Libre Franklin';
+    font-family: var(--secondary-font);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -32,7 +30,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    font-family: 'Libre Franklin';
+    font-family: var(--secondary-font);
+    letter-spacing: 0;
   }
 
   .skillsBadges {
@@ -77,5 +76,41 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 920px) {
+  h1 {
+    font-size: 60px!important;
+  }
+  .subheader {
+    font-size: 30px!important;
+    line-height: normal!important;
+  }
+  p {
+    font-size: 15px!important;
+    line-height: 25px!important;
+  }
+  .skillsBadges {
+    font-size: 11px!important;
+    font-style: normal!important;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 50px!important;
+  }
+  .subheader {
+    font-size: 20px!important;
+    line-height: normal!important;
+  }
+  p {
+    font-size: 12px!important;
+    line-height: 20px!important;
+  }
+  .skillsBadges {
+    font-size: 8px!important;
+    font-style: normal!important;
   }
 }

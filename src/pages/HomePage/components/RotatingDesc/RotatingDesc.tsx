@@ -4,13 +4,14 @@ import Typography from "@mui/material/Typography";
 
 const texts = [
     { id: 0, text: "Currently @ The Aerospace Corporation" },
+    { id: 3, text: "2.5+ years of industry experience" },
     { id: 1, text: "Based in Los Angeles" },
     { id: 2, text: "2 Time SPOT Award Winner" },
 ];
 
 const transitionTime = 3; // seconds
 
-export default function InfiniteDivCycle() {
+export default function RotatingDesc() {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ export default function InfiniteDivCycle() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     style={{
                         position: "absolute",
                         width: "100%",

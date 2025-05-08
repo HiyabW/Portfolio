@@ -10,20 +10,11 @@
 
     .aboutIntro {
         display: flex;
-        /* flex-wrap: wrap; */
-        padding: 0px 200px;
+        padding: 0em 12.5vw;
         justify-content: center;
         align-items: center;
         gap: 80px;
-        align-self: stretch;
-
-        .aboutBlurb {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
+        flex-direction: row; 
         img {
             display: flex;
             height: 419px;
@@ -34,11 +25,26 @@
             border-radius: 30px;
             flex: 1 0 0;
         }
-    }
+      
+        @media (max-width: 920px) {
+          flex-direction: column; 
+          text-align: center;
+      
+          .aboutBlurb {
+            align-items: center; 
+          }
+      
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      
 
     .aboutDesc {
         display: flex;
-        padding: 0px 300px;
+        padding: 0em 18.75vw;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -48,7 +54,7 @@
 
     #skillsAndExpertise {
         display: flex;
-        padding: 0px 200px;
+        padding: 0em 12.5vw;
         flex-direction: column;
         align-items: center;
         gap: 40px;
@@ -75,7 +81,7 @@
                 border-radius: 30px;
 
                 .skillsList {
-                    margin-top: 1.5rem;
+                    margin-top: 1.5rvw;
                     display: flex;
                     flex-direction: row;
                     justify-content: start;
@@ -93,19 +99,25 @@
 
     .photographySection {
         text-align: center;
+
         .photographyBlurb {
             margin-bottom: 20px;
         }
+
         .photos {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* keeps them in a row */
+            flex-wrap: wrap;
+            /* keeps them in a row */
             gap: 10px;
-            overflow-x: auto;  /* enables horizontal scrolling if they overflow */
+            overflow-x: auto;
+
+            /* enables horizontal scrolling if they overflow */
             img {
-                max-height: 300px; /* or max-height if you want more flexibility */
+                max-height: 300px;
+                /* or max-height if you want more flexibility */
                 object-fit: cover;
-              }          
+            }
         }
     }
 }
