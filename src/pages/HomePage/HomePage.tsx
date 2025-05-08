@@ -62,7 +62,7 @@ function HomePage() {
   return (
     <Stack id="homePage" spacing={10}>
       <Stack id="heroSection" spacing={10}>
-        <MotionStack {...motionDivProps(0.5)} className="intro" spacing={5}>
+        <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
           <Box
             id="hiAndName">
             <Typography>Hi, i'm</Typography>
@@ -76,11 +76,11 @@ function HomePage() {
             <InfiniteDivCycle />
           </Box>
         </MotionStack>
-        <MotionBox {...motionDivProps(1, 1.4, 0.1, "spring")}>
+        <MotionBox {...motionDivProps(0.3, 1.4, 0.1, "spring")}>
           <ContactIcons />
         </MotionBox>
       </Stack>
-      <MotionStack {...motionDivProps(1.5)} spacing={20} id="projects">
+      <MotionStack {...motionDivProps(0.6)} spacing={20} id="projects">
         {
           projects.map((project) => {
             return <ProjectCard key={project.id} {...project} />

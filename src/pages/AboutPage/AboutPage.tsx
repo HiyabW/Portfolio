@@ -30,23 +30,23 @@ function AboutPage() {
     return (
         <Box className="aboutPage">
             <Stack spacing={20}>
-                <MotionBox {...motionDivProps(0)} className="aboutIntro">
-                    <Box className="aboutBlurb">
+                <Box className="aboutIntro" >
+                    <MotionBox {...motionDivProps(0)} className="aboutBlurb">
                         <Typography>About Me</Typography>
                         <Typography className="subheader">I'm a Frontend Developer from Los Angeles, CA ☼</Typography>
                         <Typography className="subheader"> I build performant, responsive interfaces with modern web tools.</Typography>
-                    </Box>
-                    <Box className="aboutImg">
+                    </MotionBox>
+                    <MotionBox {...motionDivProps(0.3)} className="aboutImg">
                         <img src="/images/aboutMe.jpg" />
-                    </Box>
-                </MotionBox>
+                    </MotionBox>
+                </Box>
 
-                <MotionBox {...motionDivProps(0.3)} className="aboutDesc">
+                <MotionBox {...motionDivProps(0.6)} className="aboutDesc">
                     <Typography>I earned my B.S. in <b>Computer Science with Business Applications</b> from <i>UC Riverside</i>, where I also interned as a frontend developer at ThinqTv, a nonprofit supporting women of color in tech through educational resources.</Typography>
                     <Typography>As a Software Engineer at <i>The Aerospace Corporation</i>, I design and build dynamic user interfaces using HTML, CSS, React, and JavaScript. I <b>mentor junior developers</b>, <b>lead UI/UX and backend initiatives</b>, and <b>seamlessly adapt to diverse roles</b>. My dedication to excellence and innovation has been recognized with two SPOT Awards for outstanding performance.</Typography>
                 </MotionBox>
 
-                <MotionBox {...motionDivProps(0.6)} id="skillsAndExpertise">
+                <MotionBox {...motionDivProps(0.9)} id="skillsAndExpertise">
                     <Box className="skillsBlurb">
                         <Typography className="subheader">Skills & Expertise</Typography>
                         <Typography>I've worked with a range of technologies in web development,
@@ -76,7 +76,7 @@ function AboutPage() {
                     </Grid>
                 </MotionBox>
 
-                <MotionBox {...motionDivProps(0.9)} className="photographySection">
+                <MotionBox {...motionDivProps(0.12)} className="photographySection">
                     <Typography className="photographyBlurb">I also like photography! :-{')'}</Typography>
                     <Box className="photos">
                         <img src="/images/photo4.jpeg" />

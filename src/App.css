@@ -9,17 +9,16 @@
   padding-bottom: 40px;
 
   h1 {
-    font-family: Montserrat;
+    font-family: 'Playfair Display';
     font-size: 80px;
-    font-style: normal;
+    font-style: italic;
     font-weight: 700;
     line-height: normal;
     text-transform: capitalize;
-    letter-spacing: 1px;
   }
 
   p {
-    font-family: 'Montserrat';
+    font-family: 'Libre Franklin';
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -33,6 +32,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    font-family: 'Libre Franklin';
   }
 
   .skillsBadges {

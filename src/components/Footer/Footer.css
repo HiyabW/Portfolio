@@ -10,7 +10,7 @@
     .footerLogo {
         color: #212121;
         color: color(display-p3 0.1303 0.1303 0.1303);
-        font-family: Montserrat;
+        font-family: 'Libre Franklin';
         font-size: 32px;
         font-style: normal;
         font-weight: 700;
@@ -20,7 +20,7 @@
     .footerDesc {
         color: #212121;
         color: color(display-p3 0.1303 0.1303 0.1303);
-        font-family: Montserrat;
+        font-family: 'Libre Franklin';
         font-size: 32px;
         font-style: italic;
         font-weight: 700;

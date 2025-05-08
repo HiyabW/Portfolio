@@ -12,7 +12,6 @@
     .imageGrid1 {
         border-radius: 30px;
         background: linear-gradient(0deg, #D2E7F6 0%, #FBF9FF 50%, #FFF4E0 100%);
-        background: linear-gradient(0deg, color(display-p3 0.8399 0.9042 0.9568) 0%, color(display-p3 0.9824 0.978 1) 50%, color(display-p3 1 0.9579 0.8852) 100%);
         overflow: hidden;
         height: 43.75em;
 
