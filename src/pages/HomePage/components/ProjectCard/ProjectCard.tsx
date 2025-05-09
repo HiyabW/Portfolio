@@ -43,7 +43,7 @@ function ProjectCard(project: ProjectType) {
     }, [isHovered]); 
 
     const imageComponent =
-        (<Grid size={7} className={`imageGrid${project.id}`}>
+        (<Grid size={{sm:12, xs:12, md:7, lg:7}} className={`imageGrid${project.id}`}>
             <AnimatePresence>
                 <AnimatePresence mode="wait">
                     {showGif === false ? (
@@ -119,6 +119,7 @@ function ProjectCard(project: ProjectType) {
                 container
                 sx={{ transition: 'all 0.3s linear' }}
                 className={`projectCard ${isHovered ? 'hovering' : ''}`}
+                spacing={4}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => { if (project?.link) window.open(`${project?.link}`) }}
