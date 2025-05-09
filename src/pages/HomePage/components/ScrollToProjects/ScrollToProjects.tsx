@@ -35,13 +35,13 @@ const ScrollIndicator = () => {
                 textAlign: 'center',
             }}
         >
-            <p className="text-sm mb-2">Check out my projects</p>
+            <p style={{opacity:'50%'}}>Check out my projects!</p>
             <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
             >
 
-                <ArrowDownwardIcon sx={{opacity:'50%'}} fontSize="large" />
+                <IconButton href="#projects"><ArrowDownwardIcon sx={{opacity:'50%'}} fontSize="large" /></IconButton>
 
             </motion.div>
         </motion.div>

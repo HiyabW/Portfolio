@@ -72,25 +72,28 @@ function HomePage() {
               <Typography variant="h1"><i>Woldegebriel</i></Typography>
             </Box>
           </Box>
-          <Typography className="introDesc">I'm a full stack developer with <b>2.5+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
+
+          <MotionBox {...motionDivProps(0.3, 1.4, 0.1, "spring")}>
+            <ContactIcons />
+          </MotionBox >
+          <MotionBox {...motionDivProps(0.6)}>
+            <Typography className="introDesc">I'm a full stack developer with <b>2.5+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
+          </MotionBox>
           {/* <Box>
             <RotatingDesc />
           </Box> */}
         </MotionStack>
-        <MotionBox {...motionDivProps(0.3, 1.4, 0.1, "spring")}>
-          <ContactIcons />
-        </MotionBox >
-        <MotionBox 
-        initial= {{ opacity: 0 }}
-        animate= {{opacity: 1}}
-        transition= {{
-          duration: 0.3,
-          delay: 1.3
-        }}>
+        <MotionBox
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            delay: 1.3
+          }}>
           <ScrollIndicator />
         </MotionBox>
       </Stack>
-      <MotionStack {...motionDivProps(0.6)} spacing={20} id="projects">
+      <MotionStack {...motionDivProps(0)} spacing={20} id="projects">
         {
           projects.map((project) => {
             return <ProjectCard key={project.id} {...project} />

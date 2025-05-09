@@ -5,7 +5,7 @@ import { styled } from '@mui/system'
 const MyButton = styled(Button)(({ theme }) => ({
     borderRadius: '30px',
     border: '0.5px solid #212121',
-    padding: '10px 20px',
+    padding: '1vw 1vw',
     color: '#212121'
 }));
 

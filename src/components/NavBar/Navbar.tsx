@@ -40,10 +40,6 @@ function Navbar() {
         {
             name: "Resume",
             link: "https://drive.google.com/file/d/1FfE7ADeQH9Zn20GMBc1hPOQTqTLzfaE8/view?usp=sharing"
-        },
-        {
-            name: "Contact",
-            link: "mailto:hiyabwoldegebriel@gmail.com"
         }
     ]
 
@@ -58,6 +54,9 @@ function Navbar() {
                 {pages.map((page) => (
                     <Typography className="navLink"><a href={page.link}>{page.name}</a></Typography>
                 ))}
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Typography className="navLink"><a href={"mailto:hiyabwoldegebriel@gmail.co"}>Contact</a></Typography>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                 <IconButton

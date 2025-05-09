@@ -12,28 +12,28 @@ import './ProjectCard.css'
 import MyButton from "../../../../components/Button.tsx";
 import { AnimatePresence, motion } from "framer-motion";
 import SkillsBadge from "../../../../components/SkillsBadge/SkillsBadge.tsx";
+import { useInView } from "framer-motion";
 
 function ProjectCard(project: ProjectType) {
     const [isHovered, setIsHovered] = useState<boolean>(false)
     const [showGif, setShowGif] = useState<boolean>(false)
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: false, margin: "-100px" });
 
     useEffect(() => {
         if (isHovered && project.id !== 2) {
-            // Set the timeout to show the GIF after 1 second
             timeoutRef.current = setTimeout(() => {
                 setShowGif(true);
             }, 600);
         } else {
-            // Clear the timeout immediately if the hover state changes
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
-                timeoutRef.current = null; // Reset the timeout reference
+                timeoutRef.current = null;
             }
             setShowGif(false);
         }
 
-        // Cleanup function to ensure the timeout is cleared when the component unmounts or state changes
         return () => {
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
@@ -57,14 +57,20 @@ function ProjectCard(project: ProjectType) {
                             transition={{ duration: 0.2 }}
                         />
                     ) : (
-                        <motion.img
+                        <motion.video
                             key="text"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="image"
-                            src={`/images/nyan-cat.gif`}
+                            width={'100%'}
+                            height={'auto'}
+                            style={{objectFit:'cover'}}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            src={`/images/${project.id}.mov`}
                         />
                     )}
                 </AnimatePresence>
@@ -89,18 +95,39 @@ function ProjectCard(project: ProjectType) {
                     }
                 </Box>
                 <Box className="buttons">
-                    <MyButton disabled={project.nda ? true : false}>{project.nda ? <><FontAwesomeIcon icon={faLock} style={{ marginRight: '0.5rem' }} />Project is under NDA</> : <>Learn More</>}</MyButton>
-                    {project.id === 1 && <MyButton onClick={() => window.open('https://padpal.onrender.com/')} sx={{ border: '0px', backgroundColor: '#0091E7', color: 'white' }}>Live Demo</MyButton>}
+                    <MyButton disabled={project.nda ? true : false}>{project.nda ? <><FontAwesomeIcon icon={faLock} style={{ marginRight: '0.5rem' }} /><Typography className="skillsBadges">Project is under NDA</Typography></> : <Typography className="skillsBadges">Learn More</Typography>}</MyButton>
+                    {project.id === 1 && <MyButton onClick={() => window.open('https://padpal.onrender.com/')} sx={{ border: '0px', backgroundColor: '#0091E7', color: 'white' }}><Typography className="skillsBadges">Live Demo</Typography></MyButton>}
                 </Box>
             </Box>
         </Grid>
     )
     return (
-        <Grid container sx={{ transition: 'all 0.3s linear' }} className={`projectCard ${isHovered ? 'hovering' : ''}`} onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)} onClick={() => { if (project?.link) window.open(`${project?.link}`) }} >
-            {project.id % 2 ? imageComponent : textComponent}
-            {project.id % 2 ? textComponent : imageComponent}
-        </Grid>
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.7 }}
+            transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+                mass: 0.5
+            }}
+        >
+
+            <Grid
+                container
+                sx={{ transition: 'all 0.3s linear' }}
+                className={`projectCard ${isHovered ? 'hovering' : ''}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={() => { if (project?.link) window.open(`${project?.link}`) }}
+            >
+                {project.id % 2 ? imageComponent : textComponent}
+                {project.id % 2 ? textComponent : imageComponent}
+            </Grid>
+        </motion.div>
+
+
     )
 }
 
