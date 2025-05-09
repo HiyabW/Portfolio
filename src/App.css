@@ -94,6 +94,9 @@
     font-size: 11px!important;
     font-style: normal!important;
   }
+  .introDesc {
+    width: 370px!important;
+  }
 }
 
 @media (max-width: 400px) {
@@ -111,5 +114,8 @@
   .skillsBadges {
     font-size: 8px!important;
     font-style: normal!important;
+  }
+  .introDesc {
+    width: 270px!important;
   }
 }
