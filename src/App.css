@@ -118,4 +118,13 @@
   .introDesc {
     width: 270px!important;
   }
+  .aboutDesc {
+    padding: 0em 6vw!important;
+  }
+  .aboutIntro {
+    padding: 0em 6vw!important;
+  }
+  #skillsAndExpertise {
+    padding: 0em 6vw!important;
+  }
 }

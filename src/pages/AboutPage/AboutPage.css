@@ -1,27 +1,26 @@
 .aboutPage {
     width: 100%;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw;
     display: block;
     justify-content: center;
     align-items: center;
     text-align: left;
-    gap: 150px;
+    gap: 9.375vw;
 
     .aboutIntro {
         display: flex;
         padding: 0em 12.5vw;
         justify-content: center;
         align-items: center;
-        gap: 80px;
+        gap: 10vw;
         flex-direction: row; 
         img {
             display: flex;
             height: 419px;
-            padding: 10px 0px;
             flex-direction: column;
             align-items: flex-start;
-            gap: 10px;
+            gap: 0.625vw;
             border-radius: 30px;
             flex: 1 0 0;
         }
@@ -48,7 +47,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 2.5vw;
         align-self: stretch;
     }
 
@@ -57,7 +56,7 @@
         padding: 0em 12.5vw;
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        gap: 5vw;
         align-self: stretch;
         text-align: left;
 
@@ -72,10 +71,10 @@
             display: flex!important;
             flex-wrap: wrap;
             align-items: stretch;
-            gap: 60px;
+            gap: 3.75vw;
 
             .skillsCard {
-                padding: 40px 60px;
+                padding: 2.5vw 3.75vw;
                 background: linear-gradient(180deg, #F2F5FF 0%, #FDFAFF 50%, #F9F0FC 100%);
                 flex: 1;
                 border-radius: 30px;
@@ -86,7 +85,7 @@
                     flex-direction: row;
                     justify-content: start;
                     align-items: center;
-                    gap: 40px;
+                    gap: 2.5vw;
                     flex: 1 0 0;
                     flex-wrap: wrap;
                     gap: 10px;

@@ -26,16 +26,17 @@ function AboutPage() {
     }
 
     const MotionBox = motion(Box); // Convert Stack to a motion component
+    const MotionStack = motion(Stack); // Convert Stack to a motion component
 
     return (
         <Box className="aboutPage">
             <Stack spacing={20}>
                 <Box className="aboutIntro" >
-                    <MotionBox {...motionDivProps(0)} className="aboutBlurb">
+                    <MotionStack {...motionDivProps(0)} className="aboutBlurb" spacing={2}>
                         <Typography>About Me</Typography>
                         <Typography className="subheader">I'm a Frontend Developer from Los Angeles, CA ☼</Typography>
                         <Typography className="subheader"> I build performant, responsive interfaces with modern web tools.</Typography>
-                    </MotionBox>
+                    </MotionStack>
                     <MotionBox {...motionDivProps(0.3)} className="aboutImg">
                         <img loading="lazy" src="/images/aboutMe.webp" />
                     </MotionBox>
