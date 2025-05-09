@@ -48,8 +48,9 @@ function ProjectCard(project: ProjectType) {
                 <AnimatePresence mode="wait">
                     {showGif === false ? (
                         <motion.img
+                            loading="lazy"
                             key="image"
-                            src={`/images/${project.id}.png`}
+                            src={`/images/${project.id}.webp`}
                             className={`${isHovered ? 'hovering' : ''} image`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1, scale: isHovered ? 1.03 : 1 }}
@@ -65,12 +66,12 @@ function ProjectCard(project: ProjectType) {
                             transition={{ duration: 0.2 }}
                             width={'100%'}
                             height={'auto'}
-                            style={{objectFit:'cover'}}
+                            style={{ objectFit: 'cover' }}
                             autoPlay
                             loop
                             muted
                             playsInline
-                            src={`/images/${project.id}.mov`}
+                            src={`/images/${project.id}.mp4`}
                         />
                     )}
                 </AnimatePresence>

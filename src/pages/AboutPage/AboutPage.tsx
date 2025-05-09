@@ -37,7 +37,7 @@ function AboutPage() {
                         <Typography className="subheader"> I build performant, responsive interfaces with modern web tools.</Typography>
                     </MotionBox>
                     <MotionBox {...motionDivProps(0.3)} className="aboutImg">
-                        <img src="/images/aboutMe.jpg" />
+                        <img loading="lazy" src="/images/aboutMe.webp" />
                     </MotionBox>
                 </Box>
 
@@ -79,12 +79,12 @@ function AboutPage() {
                 <MotionBox {...motionDivProps(0.12)} className="photographySection">
                     <Typography className="photographyBlurb">I also like photography! :-{')'}</Typography>
                     <Box className="photos">
-                        <img src="/images/photo4.jpeg" />
-                        <img src="/images/photo1.jpeg" />
-                        <img src="/images/photo2.jpeg" />
-                        <img src="/images/photo3.jpeg" />
-                        <img src="/images/photo5.jpeg" />
-                        <img src="/images/photo6.jpeg" />
+                        <img src="/images/photo4.webp" />
+                        <img src="/images/photo1.webp" />
+                        <img src="/images/photo2.webp" />
+                        <img src="/images/photo3.webp" />
+                        <img src="/images/photo5.webp" />
+                        <img src="/images/photo6.webp" />
                     </Box>
                 </MotionBox>
             </Stack>

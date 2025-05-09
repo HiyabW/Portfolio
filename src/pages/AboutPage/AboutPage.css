@@ -69,7 +69,7 @@
         }
 
         .skills {
-            display: flex;
+            display: flex!important;
             flex-wrap: wrap;
             align-items: stretch;
             gap: 60px;
@@ -82,7 +82,7 @@
 
                 .skillsList {
                     margin-top: 1.5vw;
-                    display: flex;
+                    display: flex!important;
                     flex-direction: row;
                     justify-content: start;
                     align-items: center;
