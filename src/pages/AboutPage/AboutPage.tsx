@@ -79,12 +79,12 @@ function AboutPage() {
                 <MotionBox {...motionDivProps(0.12)} className="photographySection">
                     <Typography className="photographyBlurb">I also like photography! :-{')'}</Typography>
                     <Box className="photos">
-                        <img src="/images/photo4.webp" />
-                        <img src="/images/photo1.webp" />
-                        <img src="/images/photo2.webp" />
-                        <img src="/images/photo3.webp" />
-                        <img src="/images/photo5.webp" />
-                        <img src="/images/photo6.webp" />
+                        <img loading="lazy" src="/images/photo4.webp" />
+                        <img loading="lazy" src="/images/photo1.webp" />
+                        <img loading="lazy" src="/images/photo2.webp" />
+                        <img loading="lazy" src="/images/photo3.webp" />
+                        <img loading="lazy" src="/images/photo5.webp" />
+                        <img loading="lazy" src="/images/photo6.webp" />
                     </Box>
                 </MotionBox>
             </Stack>

@@ -48,7 +48,6 @@ function ProjectCard(project: ProjectType) {
                 <AnimatePresence mode="wait">
                     {showGif === false ? (
                         <motion.img
-                            loading="lazy"
                             key="image"
                             src={`/images/${project.id}.webp`}
                             className={`${isHovered ? 'hovering' : ''} image`}
