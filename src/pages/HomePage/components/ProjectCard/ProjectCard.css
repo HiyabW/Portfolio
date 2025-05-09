@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 100px;
+    gap: 6.25vw;
     border-radius: 30px;
     align-items: stretch;
     height: fit-content;
@@ -56,21 +56,21 @@
 
     .text {
         display: flex;
-        padding: 10px 80px;
+        padding: 0.625vw 5vw;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: 40px;
+        gap: 2.5vw;
         flex: 1 0 0;
         align-self: stretch;
 
         .projectTitle {
             display: flex;
-            padding: 10px 0px;
+            padding: 0.625vw 0vw;
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            gap: 20px;
+            gap: 1.25vw;
             align-self: stretch;
             text-align: left;
 
@@ -82,23 +82,23 @@
 
         .projectDescription {
             display: flex;
-            padding: 10px 0px;
+            padding: 0.625vw 0vw;
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            gap: 40px;
+            gap: 2.5vw;
             align-self: stretch;
             text-align: left;
 
             .skills {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 10px
+                gap: 0.625vw
             }
 
             .buttons {
                 display: flex;
-                gap: 20px;
+                gap: 1.25vw;
                 flex-wrap: wrap;
             }
         }
@@ -108,4 +108,23 @@
 .hovering {
     background: rgba(0, 0, 0, 0.035);
     cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .projectCard {
+        flex-direction: column !important;
+        align-items: center!important;
+        padding: 2.625vw 5vw;
+        .text {
+            width: 100%;
+        }
+    }
+    .imageGrid1 .imageGrid2 {
+        width: 100% !important;
+        height: 60vw !important;
+
+        .image {
+            width: 100%!important;   
+        }
+    }
 }
