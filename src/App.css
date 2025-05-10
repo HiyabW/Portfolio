@@ -111,12 +111,8 @@
     font-size: 12px!important;
     line-height: 20px!important;
   }
-  .skillsBadges {
-    font-size: 8px!important;
-    font-style: normal!important;
-  }
   .introDesc {
-    width: 270px!important;
+    width: 100%!important;
   }
   .aboutDesc {
     padding: 0em 6vw!important;

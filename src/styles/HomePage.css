@@ -34,20 +34,27 @@
       }
     }
 
-    #hiAndName {
-      gap: 40px;
-
-      .name {
-        font-family: 'Playfair Display';
+    .intro {
+      align-items: center;
+      #hiAndName {
+        gap: 40px;
+  
+        .name {
+          font-family: 'Playfair Display';
+        }
       }
-    }
-
-    .introDesc {
-      width: 580px;
+  
+      .introDesc {
+        width: 580px;
+      }
     }
   }
 
   #projects {
     width: 100%;
+  }
+
+  .contactIconsBox {
+    width: fit-content;
   }
 }

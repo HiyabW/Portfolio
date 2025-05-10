@@ -25,7 +25,7 @@ function HomePage() {
     {
       id: 2,
       name: 'Dashboard of Cameo Data',
-      desc: 'Dashboarding GUI that coverts complex Cameo data into GoJS diagrams.',
+      desc: 'Dashboarding GUI that parses complex Cameo data using Python scripts into GoJS diagrams.',
       nda: true,
       skills: ["React", "Docker", "Kubernetes"]
     }
@@ -68,7 +68,7 @@ function HomePage() {
             id="hiAndName">
             <Typography>Hi, i'm</Typography>
             <Box id="name">
-              <Typography variant="h1"><i>Heyab</i></Typography>
+              <Typography variant="h1"><i>Hiyab</i></Typography>
               <Typography variant="h1"><i>Woldegebriel</i></Typography>
             </Box>
           </Box>

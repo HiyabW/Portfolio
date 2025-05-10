@@ -4,6 +4,7 @@
     align-items: center;
     gap: 60px;
     align-self: center;
+    width: fit-content;
 
     .icon {
         width: 25px;

@@ -26,11 +26,6 @@ const ScrollIndicator = () => {
             animate={controls}
             initial={{ opacity: 1 }}
             style={{
-                position: 'absolute',
-                width: '500px',
-                bottom: '30px',
-                left: '50%',
-                transform: 'translateX(-50%)',
                 zIndex: 2,
                 textAlign: 'center',
             }}
