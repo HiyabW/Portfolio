@@ -47,6 +47,7 @@ function ProjectCard(project: ProjectType) {
                 />
                 <motion.video
                     src={`/images/${project.id}.mp4`}
+                    className={`image`}
                     autoPlay
                     loop
                     muted
