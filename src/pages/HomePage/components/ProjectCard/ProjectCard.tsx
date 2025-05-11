@@ -28,30 +28,44 @@ function ProjectCard(project: ProjectType) {
 
     const imageComponent = useMemo(() => (
         <Grid size={{ xs: 12, md: 7 }} className={`imageGrid${project.id}`}>
-            <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Box
+                sx={{ position: 'relative', width: '100%', height: '100%' }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
                 <motion.img
                     src={`/images/${project.id}.webp`}
-                    className={`image`}
                     alt={`Screenshot of ${project.name}`}
+                    className="image"
                     loading="lazy"
+                    initial={false}
+                    animate={{
+                        scale: isHovered && !showGif ? 1.03 : 1,
+                        opacity: showGif ? 0 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
                     style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
                         width: '100%',
                         height: 'auto',
-                        opacity: showGif ? 0 : 1,
+                        zIndex: 1,
                         pointerEvents: showGif ? 'none' : 'auto',
-                        transition: 'opacity 0.3s ease',
                     }}
                 />
                 <motion.video
                     src={`/images/${project.id}.mp4`}
-                    className={`image`}
+                    className="image"
                     autoPlay
                     loop
                     muted
                     playsInline
+                    initial={false}
+                    animate={{
+                        opacity: showGif ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
                     style={{
                         position: 'absolute',
                         top: 0,
@@ -59,9 +73,8 @@ function ProjectCard(project: ProjectType) {
                         width: '100%',
                         height: 'auto',
                         objectFit: 'cover',
-                        opacity: showGif ? 1 : 0,
+                        zIndex: 2,
                         pointerEvents: showGif ? 'auto' : 'none',
-                        transition: 'opacity 0.3s ease',
                     }}
                 />
             </Box>
