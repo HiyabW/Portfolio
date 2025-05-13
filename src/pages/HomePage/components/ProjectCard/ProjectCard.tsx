@@ -18,7 +18,7 @@ function ProjectCard(project: ProjectType) {
     const isInView = useInView(ref, { once: false, margin: "-100px" });
 
     useEffect(() => {
-        if (isHovered && project.id !== 2) {
+        if (isHovered && project.id === 1) {
             const id = setTimeout(() => setShowGif(true), 600);
             return () => clearTimeout(id);
         } else {
@@ -27,7 +27,7 @@ function ProjectCard(project: ProjectType) {
     }, [isHovered]);
 
     const imageComponent = useMemo(() => (
-        <Grid size={{ xs: 12, md: 7 }} className={`imageGrid${project.id}`}>
+        <Grid size={{ xs: 12, md: 7 }} className={`imageGrid imageGrid${project.id}`}>
             <Box
                 sx={{ position: 'relative', width: '100%', height: '100%' }}
                 onMouseEnter={() => setIsHovered(true)}
@@ -136,6 +136,7 @@ function ProjectCard(project: ProjectType) {
                 damping: 12,
                 mass: 0.5,
             }}
+            onClick={() => project.link ? window.open(project.link) : null}
         >
             <Grid
                 container

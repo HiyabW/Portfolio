@@ -25,10 +25,25 @@ function HomePage() {
     {
       id: 2,
       name: 'Dashboard of Cameo Data',
-      desc: 'Dashboarding GUI that parses complex Cameo data using Python scripts into GoJS diagrams.',
+      desc: 'Dashboarding GUI that parses complex Cameo data using Python scripts into GoJS diagrams and 3D models.',
       nda: true,
       skills: ["React", "Docker", "Kubernetes"]
-    }
+    },
+    {
+      id: 3,
+      name: 'Mission Creation Diagram Builder',
+      desc: 'Visual drag-and-drop builder powered by GoJs, allowing users to design task roadmaps.',
+      nda: true,
+      skills: ["Javascript", "Cypress", "Flask"]
+    },
+    {
+      id: 4,
+      name: 'Sprint Progress Tracker',
+      desc: 'Enhanced team productivity by developing a dynamic, intuitive dashboard to track tasking progress',
+      nda: true,
+      skills: ["React", "HTML/CSS", "Javascript"]
+    },
+
   ]
 
   const location = useLocation();
@@ -72,13 +87,12 @@ function HomePage() {
               <Typography variant="h1"><i>Woldegebriel</i></Typography>
             </Box>
           </Box>
-
-          <MotionBox {...motionDivProps(0.3, 1.4, 0.1, "spring")}>
-            <ContactIcons />
-          </MotionBox >
-          <MotionBox {...motionDivProps(0.6)}>
+          <MotionBox {...motionDivProps(0.3)}>
             <Typography className="introDesc">I'm a full stack developer with <b>2.5+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
           </MotionBox>
+          <MotionBox {...motionDivProps(0.6, 1.4, 0.1, "spring")}>
+            <ContactIcons />
+          </MotionBox >
           {/* <Box>
             <RotatingDesc />
           </Box> */}

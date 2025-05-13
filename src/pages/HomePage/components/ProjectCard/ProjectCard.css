@@ -9,9 +9,8 @@
     align-items: stretch;
     height: fit-content;
 
-    .imageGrid1 {
+    .imageGrid {
         border-radius: 30px;
-        background: linear-gradient(0deg, #D2E7F6 0%, #FBF9FF 50%, #FFF4E0 100%);
         overflow: hidden;
         height: 43.75vw;
 
@@ -32,28 +31,22 @@
         align-items: stretch;
     }
 
-    .imageGrid2 {
-        border-radius: 30px;
-        background: linear-gradient(180deg, #EFF7F1 0%, #FCEEFF 100%);
-        background: linear-gradient(180deg, color(display-p3 0.9422 0.9668 0.948) 0%, color(display-p3 0.9784 0.9352 1) 100%);
-        overflow: hidden;
-        height: 43.75vw;
-
-        .image {
-            width: 100%;
-            height: 100%!important;
-            object-fit: cover;
-            /* Keeps natural aspect ratio */
-        }
-
-        .hovering {
-            transform: scale(1.03);
-            z-index: 1;
-        }
-
-        display: flex;
-        align-items: stretch;
+    .imageGrid1 {
+        background: linear-gradient(0deg, #D2E7F6 0%, #FBF9FF 50%, #FFF4E0 100%);
     }
+
+    .imageGrid2 {
+        background: linear-gradient(180deg, #ecf9ef 0%, #fbf6ee 50%, #fce6ef 100%);
+    }
+
+    .imageGrid3 {
+        background: linear-gradient(180deg, #eff1f7 0%, #FBF9FF 50%, #FCEEFF 100%);
+    }
+
+    .imageGrid4 {
+        background: linear-gradient(180deg, #ecf8e6 0%, #fbfdef 50%,  #ffeedd 100%);
+    }
+
 
     .text {
         display: flex;
