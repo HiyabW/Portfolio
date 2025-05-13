@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 
-  background: var(--Page-Bg, linear-gradient(180deg, #eff8ff 0%, #fff9fe 50%, #fffbeb 100%));
+  background: var(--Page-Bg, linear-gradient(180deg, #f7fcff 0%, #fff9fe 50%, #fffdf7 100%));
 
   padding-left: 40px;
   padding-right: 40px;

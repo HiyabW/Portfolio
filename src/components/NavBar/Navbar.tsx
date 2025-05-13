@@ -52,7 +52,7 @@ function Navbar() {
 
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (
-                    <Typography className="navLink"><a href={page.link}>{page.name}</a></Typography>
+                    <Typography className="navLink"><a href={page.name!=="Resume" ? page.link : undefined} onClick={() => page.name==="Resume" ? window.open(page.link) : undefined}>{page.name}</a></Typography>
                 ))}
             </Box>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

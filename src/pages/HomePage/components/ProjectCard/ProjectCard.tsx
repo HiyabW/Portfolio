@@ -30,8 +30,6 @@ function ProjectCard(project: ProjectType) {
         <Grid size={{ xs: 12, md: 7 }} className={`imageGrid imageGrid${project.id}`}>
             <Box
                 sx={{ position: 'relative', width: '100%', height: '100%' }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
             >
                 <motion.img
                     src={`/images/${project.id}.webp`}
@@ -137,13 +135,13 @@ function ProjectCard(project: ProjectType) {
                 mass: 0.5,
             }}
             onClick={() => project.link ? window.open(project.link) : null}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
             <Grid
                 container
                 spacing={4}
                 className={`projectCard ${isHovered ? "hovering" : ""}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
             >
                 {project.id % 2 ? imageComponent : textComponent}
                 {project.id % 2 ? textComponent : imageComponent}

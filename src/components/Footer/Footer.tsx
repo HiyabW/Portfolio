@@ -61,9 +61,9 @@ function Footer() {
                     <Typography className="footerLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Contact</a></Typography>
                 </Box>
                 <Box>
-                    <Typography className="footerLink"><a href="https://github.com/HiyabW">Github</a></Typography>
-                    <Typography className="footerLink"><a href="https://www.linkedin.com/in/hiyab-woldegebriel-119009178/">LinkedIn</a></Typography>
-                    <Typography className="footerLink"><a href="mailto:hiyabwoldegebriel@gmail.com">Email</a></Typography>
+                    <Typography className="footerLink"><a onClick={() => window.open("https://github.com/HiyabW")}>Github</a></Typography>
+                    <Typography className="footerLink"><a onClick={() => window.open("https://www.linkedin.com/in/hiyab-woldegebriel-119009178/")}>LinkedIn</a></Typography>
+                    <Typography className="footerLink"><a onClick={() => window.open("mailto:hiyabwoldegebriel@gmail.com")}>Email</a></Typography>
                 </Box>
             </Box>
         </Box>
