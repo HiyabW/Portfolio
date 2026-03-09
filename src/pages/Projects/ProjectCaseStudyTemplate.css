@@ -1,0 +1,590 @@
+.caseStudyPage {
+    --cs-accent: #0091E7;
+    --cs-accent-bg: #e8f3fc;
+
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4vw;
+
+    .csLayout {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 6vw;
+    }
+
+    .csHero {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        margin-bottom: 6vw;
+        text-align: left;
+        transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .csHeroExpanded {
+        max-width: 1200px;
+    }
+
+    .csHeroText {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .csHighlight {
+        color: var(--cs-accent);
+    }
+
+    .csPersonaImageContainer {
+        border-radius: 30px;
+        background: linear-gradient(0deg, #d0d0d036 0%, #d0d0d016 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .csPersonaImage {
+        width: 90%;
+    }
+
+    .csPersonaIconWrap {
+        width: 100%;
+        max-width: 200px;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background: rgba(0, 0, 0, 0.06);
+    }
+
+    .csPersonaIcon {
+        font-size: clamp(64px, 10vw, 96px);
+        line-height: 1;
+    }
+
+    .csMediaBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .csHeroMedia {
+        width: 100%;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .csHeroVideo {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .csOverviewVideo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.5vw;
+    }
+
+    .csVideoLabel {
+        font-size: 0.8rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.45;
+    }
+
+    .csOverviewVideoEmbed {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .csOverviewVideoEmbed iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    .csToc {
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5vw;
+        font-size: 14px;
+    }
+
+    .csTocTitle {
+        margin-bottom: 0.75vw;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .csTocList {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .csTocLink {
+        text-decoration: none;
+        color: #6b6b6b;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
+    }
+
+    .csTocLink:hover {
+        color: var(--cs-accent);
+    }
+
+    .csTocLink.active {
+        color: var(--cs-accent);
+    }
+
+    .csSection {
+        max-width: 52rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+        text-align: left;
+    }
+
+    .csSection+.csSection {
+        margin-top: 7.8vw;
+    }
+
+    .csPersona {
+        max-width: none;
+    }
+
+    .csPersonaLayout {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10vw;
+        margin-top: 2.5vw;
+    }
+
+    .csPersonaLeft {
+        flex: 1 1 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 2vw;
+    }
+
+    .csPersonaName {
+        font-weight: 700;
+        font-family: var(--secondary-font);
+        font-size: 1.5rem;
+    }
+
+    .csPersonaSynopsisRows {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+        width: 100%;
+    }
+
+    .csPersonaSynopsisRow {
+        display: grid;
+        grid-template-columns: 1.5rem 1fr;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .csPersonaSynopsisIcon {
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    .csPersonaSynopsis {
+        text-align: left;
+    }
+
+    .csPersonaRight {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .csPersonaBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+    }
+
+    .csPersonaBlockTitle {
+        font-weight: 600;
+        font-family: var(--secondary-font);
+        margin-bottom: 0.25rem;
+    }
+
+    .csPersonaList {
+        width: 100%;
+    }
+
+    .csPersonaListItem {
+        padding: 1.25vw 1.75vw;
+        border-radius: 24px;
+    }
+
+    .goals {
+        background-color: var(--cs-accent-bg);
+    }
+
+    .painPoints {
+        background-color: #ffbf001c;
+    }
+
+    .csHowHelpsIntro {
+        margin-top: 0.5vw;
+        margin-bottom: 2vw;
+        opacity: 0.7;
+    }
+
+    .csHelpsList {
+        margin-top: 0.5vw;
+    }
+
+    .csHelpsItem {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.75vw;
+        padding: 1.5vw 2vw;
+        border-radius: 18px;
+        background: var(--cs-accent-bg);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .csHelpsItem:hover {
+        box-shadow: 0 12px 40px rgba(0, 80, 180, 0.11), 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        transform: translateY(-2px);
+    }
+
+    .csHelpsTitle {
+        flex: 0 0 220px;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+        color: var(--primary-font);
+        line-height: 1.4 !important;
+    }
+
+    .csHelpsDesc {
+        flex: 1;
+        font-size: 0.9rem !important;
+        line-height: 1.65 !important;
+        opacity: 0.8;
+    }
+
+    .csDiagramContext {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+    }
+
+    .csDiagramLegend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .csDiagramLegendItem {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+    .csDiagramLegendDot {
+        flex-shrink: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .csDiagramThumb {
+        position: relative;
+        cursor: pointer;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 140%;
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .csDiagramThumb:focus-visible {
+        outline: 2px solid var(--cs-accent);
+        outline-offset: 3px;
+    }
+
+    .csDiagramImg {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: filter 0.25s ease, transform 0.3s ease;
+    }
+
+    .csDiagramThumb:hover .csDiagramImg {
+        filter: brightness(0.88);
+        transform: scale(1.015);
+    }
+
+    .csDiagramHint {
+        position: absolute;
+        bottom: 12px;
+        right: 14px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        backdrop-filter: blur(6px);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .csDiagramHint p {
+        color: #fff !important;
+    }
+
+    .csDiagramThumb:hover .csDiagramHint {
+        opacity: 1;
+    }
+
+    .csLightboxOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(6px);
+        z-index: 1300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2vw;
+        cursor: zoom-out;
+        animation: csFadeIn 0.2s ease;
+    }
+
+    @keyframes csFadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .csLightboxContent {
+        position: relative;
+        cursor: default;
+        max-width: min(92vw, 1400px);
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .csLightboxImgWrap {
+        overflow: hidden;
+        border-radius: 16px;
+        cursor: zoom-in;
+        line-height: 0;
+        max-width: 100%;
+        max-height: 88vh;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    }
+
+    .csLightboxImgWrap.zoomed {
+        cursor: zoom-out;
+    }
+
+    .csLightboxImg {
+        width: 100%;
+        max-height: 88vh;
+        height: auto;
+        object-fit: contain;
+        border-radius: 16px;
+        display: block;
+        transition: transform 0.25s ease;
+        will-change: transform;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    .csLightboxImg.zoomed {
+        transform: scale(2.5);
+    }
+
+    .csLightboxClose {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        transition: background 0.2s ease;
+        z-index: 1;
+    }
+
+    .csLightboxClose:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .csMockups {
+        border-radius: 30px;
+        border: 0.5px solid #212121;
+        overflow: hidden;
+    }
+
+    .csMockups img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .csMockupsFigma {
+        aspect-ratio: 9 / 16;
+        max-height: 80vh;
+        width: 100%;
+        display: flex;
+    }
+
+    .csFigmaEmbed {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    .csChallengesList {
+        margin-top: 2vw;
+    }
+
+    .csChallengeItem {
+        padding: 1.75vw 2.25vw;
+        border-radius: 24px;
+        background: var(--cs-accent-bg);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        text-align: left;
+    }
+
+    .csChallengeLabel {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .csFutureGrid {
+        margin-top: 2vw;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2vw;
+        text-align: left;
+    }
+
+    .csFutureItem {
+        padding: 1.75vw 2.25vw;
+        border-radius: 24px;
+        background: var(--cs-accent-bg);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+
+    .csFutureNumber {
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 920px) {
+    .caseStudyPage {
+        padding-top: 6vw;
+        padding-bottom: 6vw;
+
+        .csHero {
+            max-width: 100%;
+            margin-bottom: 8vw;
+        }
+
+        .csToc {
+            position: static;
+            margin-bottom: 4vw;
+            flex-direction: column;
+        }
+
+        .csTocList {
+            flex-direction: column;
+            gap: 1vw;
+        }
+
+        .csSection+.csSection {
+            margin-top: 10.4vw;
+        }
+
+        .csFutureGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .csPersonaLayout {
+            flex-direction: column;
+            gap: 6vw;
+            align-items: stretch;
+        }
+
+        .csPersonaLeft {
+            flex: none;
+            max-width: 100%;
+        }
+
+        .csPersonaIconWrap {
+            max-width: 160px;
+        }
+
+        .csPersonaRight {
+            flex: none;
+            gap: 6vw;
+        }
+
+        .csHelpsItem {
+            flex-direction: column;
+            gap: 2vw;
+            padding: 4vw 5vw;
+        }
+
+        .csHelpsTitle {
+            flex: none;
+        }
+
+        .csDiagramThumb {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .caseStudyPage {
+        .csToc {
+            display: none;
+        }
+    }
+}

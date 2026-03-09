@@ -6,6 +6,7 @@ type ProjectType = {
     skills: string[];
     link?: string;
     detailRoute?: string;
+    hasVideo?: boolean;
 }
 
 export default ProjectType

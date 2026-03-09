@@ -21,7 +21,17 @@ function HomePage() {
       nda: false,
       skills: ["React", "HTML/CSS", "SQL", "FaceAPI"],
       link: "https://github.com/HiyabW/padpal",
-      detailRoute: '/projects/padpal'
+      detailRoute: '/projects/padpal',
+      hasVideo: true
+    },
+    {
+      id: 5,
+      name: 'Tokyo Afterfall',
+      desc: 'A UI/UX case study designing accessibility features — high-contrast mode, scalable HUD, and audio cues — for visually impaired Nintendo Switch players.',
+      nda: false,
+      skills: ["Figma", "UX Research", "UI Design", "Prototyping"],
+      detailRoute: '/projects/tokyoAfterfall',
+      hasVideo: true
     },
     {
       id: 2,
@@ -110,8 +120,8 @@ function HomePage() {
       </Stack>
       <MotionStack {...motionDivProps(0)} spacing={20} id="projects">
         {
-          projects.map((project) => {
-            return <ProjectCard key={project.id} {...project} />
+          projects.map((project, index) => {
+            return <ProjectCard key={project.id} {...project} index={index} />
           })
         }
       </MotionStack>

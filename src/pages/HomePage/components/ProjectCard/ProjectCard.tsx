@@ -12,7 +12,7 @@ import SkillsBadge from "../../../../components/SkillsBadge/SkillsBadge.tsx";
 import MyButton from "../../../../components/Button.tsx";
 import './ProjectCard.css';
 
-function ProjectCard(project: ProjectType) {
+function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
     const [isHovered, setIsHovered] = useState(false);
     const [showGif, setShowGif] = useState(false);
     const ref = React.useRef(null);
@@ -28,7 +28,7 @@ function ProjectCard(project: ProjectType) {
     };
 
     useEffect(() => {
-        if (isHovered && project.id === 1) {
+        if (isHovered && project.hasVideo) {
             const id = setTimeout(() => setShowGif(true), 600);
             return () => clearTimeout(id);
         } else {
@@ -80,7 +80,7 @@ function ProjectCard(project: ProjectType) {
                         left: 0,
                         width: '100%',
                         height: 'auto',
-                        objectFit: 'cover',
+                        objectFit: 'contain',
                         zIndex: 2,
                         pointerEvents: showGif ? 'auto' : 'none',
                     }}
@@ -93,7 +93,7 @@ function ProjectCard(project: ProjectType) {
     const textComponent = useMemo(() => (
         <Grid size={{ xs: 12, md: 5 }} className="text">
             <Box className="projectTitle">
-                <Typography className="subheader number">0{project.id}.</Typography>
+                <Typography className="subheader number">0{index + 1}.</Typography>
                 <Typography className="subheader">{project.name}</Typography>
             </Box>
 
@@ -159,8 +159,8 @@ function ProjectCard(project: ProjectType) {
                 spacing={4}
                 className={`projectCard ${isHovered ? "hovering" : ""}`}
             >
-                {project.id % 2 ? imageComponent : textComponent}
-                {project.id % 2 ? textComponent : imageComponent}
+                {index % 2 === 0 ? imageComponent : textComponent}
+                {index % 2 === 0 ? textComponent : imageComponent}
             </Grid>
         </motion.div>
     );
