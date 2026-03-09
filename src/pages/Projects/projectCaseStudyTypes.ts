@@ -52,6 +52,8 @@ export type DesignProcessData = {
     text?: ReactNode;
     figmaEmbedUrl?: string;
     figmaEmbedLabel?: string;
+    hifiGallery?: string[];
+    hifiGalleryLabel?: string;
 };
 
 export type DiagramLegendItem = {

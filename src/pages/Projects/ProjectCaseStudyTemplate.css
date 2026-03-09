@@ -475,6 +475,89 @@
         display: block;
     }
 
+    .csHifiGalleryBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.5vw;
+    }
+
+    .csHifiGallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        align-items: start;
+    }
+
+    .csHifiGalleryItem {
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .csHifiGalleryItem:nth-child(3n+1) {
+        grid-column: span 2;
+    }
+
+    .csHifiGalleryItem img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .csHifiGalleryItem:hover img {
+        transform: scale(1.03);
+        filter: brightness(0.88);
+    }
+
+    .csHifiGalleryItem:focus-visible {
+        outline: 2px solid var(--cs-accent);
+        outline-offset: 3px;
+    }
+
+    .csGalleryLightbox {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .csGalleryNav {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        transition: background 0.2s ease;
+        z-index: 1;
+    }
+
+    .csGalleryNav:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .csGalleryCounter {
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.6) !important;
+        font-size: 0.8rem !important;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
     .csChallengesList {
         margin-top: 2vw;
     }
@@ -572,6 +655,14 @@
 
         .csHelpsTitle {
             flex: none;
+        }
+
+        .csHifiGallery {
+            grid-template-columns: 1fr;
+        }
+
+        .csHifiGalleryItem:nth-child(3n+1) {
+            grid-column: span 1;
         }
 
         .csDiagramThumb {

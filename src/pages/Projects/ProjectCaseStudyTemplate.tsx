@@ -47,6 +47,7 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
     const [diagramOpen, setDiagramOpen] = useState(false);
     const [isZoomed, setIsZoomed] = useState(false);
     const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+    const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
     const tocSections = [
         data.overview && { id: "overview", label: "Project Overview" },
@@ -98,6 +99,18 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
         window.addEventListener("keydown", handleKey);
         return () => window.removeEventListener("keydown", handleKey);
     }, [diagramOpen]);
+
+    useEffect(() => {
+        if (galleryIndex === null) return;
+        const gallery = data.designProcess?.hifiGallery ?? [];
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setGalleryIndex(null);
+            if (e.key === "ArrowRight") setGalleryIndex((i) => (i !== null ? Math.min(i + 1, gallery.length - 1) : null));
+            if (e.key === "ArrowLeft") setGalleryIndex((i) => (i !== null ? Math.max(i - 1, 0) : null));
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [galleryIndex, data.designProcess?.hifiGallery]);
 
     useEffect(() => {
         const sectionElements = document.querySelectorAll<HTMLElement>("[data-section-id]");
@@ -336,6 +349,32 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 {data.designProcess.text && (
                                     <Typography>{data.designProcess.text}</Typography>
                                 )}
+                                {data.designProcess.hifiGallery && data.designProcess.hifiGallery.length > 0 && (
+                                    <Box className="csHifiGalleryBlock">
+                                        <Typography className="csVideoLabel">
+                                            {data.designProcess.hifiGalleryLabel ?? "High fidelity screens"}
+                                        </Typography>
+                                        <Box className="csHifiGallery">
+                                            {data.designProcess.hifiGallery.map((src, i) => (
+                                                <Box
+                                                    key={i}
+                                                    className="csHifiGalleryItem"
+                                                    onClick={() => setGalleryIndex(i)}
+                                                    role="button"
+                                                    tabIndex={0}
+                                                    aria-label={`View high fidelity design ${i + 1}`}
+                                                    onKeyDown={(e) => e.key === "Enter" && setGalleryIndex(i)}
+                                                >
+                                                    <img
+                                                        src={src}
+                                                        alt={`High fidelity screen ${i + 1}`}
+                                                        loading="lazy"
+                                                    />
+                                                </Box>
+                                            ))}
+                                        </Box>
+                                    </Box>
+                                )}
                                 {data.designProcess.figmaEmbedUrl && (
                                     <Box className="csMediaBlock">
                                         <Typography className="csVideoLabel">
@@ -494,6 +533,57 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                     </MotionStack>
                 </Grid>
             </Grid>
+
+            {galleryIndex !== null && data.designProcess?.hifiGallery && (
+                <Box
+                    className="csLightboxOverlay"
+                    onClick={() => setGalleryIndex(null)}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="High fidelity screen viewer"
+                >
+                    <Box
+                        className="csLightboxContent csGalleryLightbox"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            className="csLightboxClose"
+                            onClick={() => setGalleryIndex(null)}
+                            aria-label="Close"
+                        >
+                            ✕
+                        </button>
+                        {galleryIndex > 0 && (
+                            <button
+                                className="csGalleryNav csGalleryNavPrev"
+                                onClick={() => setGalleryIndex((i) => (i !== null ? i - 1 : null))}
+                                aria-label="Previous image"
+                            >
+                                ‹
+                            </button>
+                        )}
+                        <Box className="csLightboxImgWrap">
+                            <img
+                                src={data.designProcess.hifiGallery[galleryIndex]}
+                                alt={`High fidelity screen ${galleryIndex + 1}`}
+                                className="csLightboxImg"
+                            />
+                        </Box>
+                        {galleryIndex < data.designProcess.hifiGallery.length - 1 && (
+                            <button
+                                className="csGalleryNav csGalleryNavNext"
+                                onClick={() => setGalleryIndex((i) => (i !== null ? i + 1 : null))}
+                                aria-label="Next image"
+                            >
+                                ›
+                            </button>
+                        )}
+                        <Typography className="csGalleryCounter">
+                            {galleryIndex + 1} / {data.designProcess.hifiGallery.length}
+                        </Typography>
+                    </Box>
+                </Box>
+            )}
         </Box>
     );
 }

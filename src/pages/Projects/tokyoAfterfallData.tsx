@@ -29,7 +29,7 @@ const tokyoAfterfallData: ProjectCaseStudyData = {
     overview: {
         text: "Tokyo Afterfall is a handheld video game concept that incorporates a high-contrast mode, heads-up display enlargement, and audio cues to assist visually impaired players through an interactive menu system. The project presents a narrative centered on a young girl exploring the abandoned city and temples of Tokyo in an immersive 2D style. Despite the popularity of the Nintendo Switch, many of its top-selling games offer limited accessibility features — leaving visually impaired players without the audible and visual feedback they need to enjoy the experience.",
         embedUrl: "https://www.youtube.com/embed/KDChzTR9Hcc?autoplay=1&mute=1&loop=1&playlist=KDChzTR9Hcc",
-        embedLabel: "Full design walkthrough",
+        embedLabel: "Partial design walkthrough",
     },
 
     userPersona: {
@@ -76,6 +76,18 @@ const tokyoAfterfallData: ProjectCaseStudyData = {
     designProcess: {
         sectionLabel: "Design Process",
         text: "The process began with a three-pronged research phase: secondary research reviewing videos and articles from visually impaired gamers (including Seren Jaye and James Rath), informal user interviews with four visually impaired players, and a competitor analysis across the Nintendo Switch and its top-selling titles. Findings revealed three core pain points — cognitive overload, non-scalable UI, and a lack of audio feedback — which led to a redefined design challenge: how might we design a handheld game that reduces cognitive overload, includes scalable UI, and uses audio feedback that improves the experience for low-vision and color-blind players? From there, I developed an information architecture to define the interactive menu structure, then produced high-fidelity designs and an interactive prototype incorporating the three accessibility pillars.",
+        hifiGallery: [
+            "/images/tokyoAfterfallHifis/Menu.png",
+            "/images/tokyoAfterfallHifis/Menu-2.png",
+            "/images/tokyoAfterfallHifis/Menu-3.png",
+            "/images/tokyoAfterfallHifis/Menu-4.png",
+            "/images/tokyoAfterfallHifis/Menu-5.png",
+            "/images/tokyoAfterfallHifis/Menu-6.png",
+            "/images/tokyoAfterfallHifis/Menu-7.png",
+            "/images/tokyoAfterfallHifis/Menu-8.png",
+            "/images/tokyoAfterfallHifis/Menu-9.png",
+        ],
+        hifiGalleryLabel: "High fidelity screens",
     },
 
     challenges: [
