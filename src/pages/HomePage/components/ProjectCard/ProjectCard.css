@@ -32,19 +32,19 @@
     }
 
     .imageGrid1 {
-        background: linear-gradient(0deg, #D2E7F6 0%, #FBF9FF 50%, #FFF4E0 100%);
+        background: linear-gradient(0deg, #c7e3f7 0%, #FBF9FF 50%, #ffecc7 100%);
     }
 
     .imageGrid2 {
-        background: linear-gradient(180deg, #ecf9ef 0%, #fbf6ee 50%, #fce6ef 100%);
+        background: linear-gradient(180deg, #e0fde7 0%, #fbf6ee 50%, #ffd9e9 100%);
     }
 
     .imageGrid3 {
-        background: linear-gradient(180deg, #eff1f7 0%, #FBF9FF 50%, #FCEEFF 100%);
+        background: linear-gradient(180deg, #d7e1fd 0%, #FBF9FF 50%, #edd6ff 100%);
     }
 
     .imageGrid4 {
-        background: linear-gradient(180deg, #ecf8e6 0%, #fbfdef 50%,  #ffeedd 100%);
+        background: linear-gradient(180deg, #e1ffd2 0%, #fbfdef 50%,  #fcddbe 100%);
     }
 
 

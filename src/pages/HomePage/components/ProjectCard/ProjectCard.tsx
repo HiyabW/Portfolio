@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import ProjectType from "./types/ProjectType";
 import SkillsBadge from "../../../../components/SkillsBadge/SkillsBadge.tsx";
@@ -16,6 +17,15 @@ function ProjectCard(project: ProjectType) {
     const [showGif, setShowGif] = useState(false);
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: false, margin: "-100px" });
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        if (project.detailRoute) {
+            navigate(project.detailRoute);
+        } else if (project.link) {
+            window.open(project.link, "_blank");
+        }
+    };
 
     useEffect(() => {
         if (isHovered && project.id === 1) {
@@ -98,7 +108,10 @@ function ProjectCard(project: ProjectType) {
                 </Box>
 
                 <Box className="buttons">
-                    <MyButton disabled={project.nda}>
+                    <MyButton
+                        disabled={project.nda}
+                        onClick={!project.nda ? handleNavigate : undefined}
+                    >
                         {project.nda ? (
                             <>
                                 <FontAwesomeIcon icon={faLock} style={{ marginRight: "0.5rem" }} />
@@ -111,7 +124,10 @@ function ProjectCard(project: ProjectType) {
 
                     {project.id === 1 && (
                         <MyButton
-                            onClick={() => window.open("https://padpal.onrender.com/", "_blank")}
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                window.open("https://padpal.onrender.com/", "_blank");
+                            }}
                             sx={{ border: "0px", backgroundColor: "#0091E7", color: "white" }}
                             aria-label="Open live demo"
                         >
@@ -134,7 +150,7 @@ function ProjectCard(project: ProjectType) {
                 damping: 12,
                 mass: 0.5,
             }}
-            onClick={() => project.link ? window.open(project.link) : null}
+            onClick={handleNavigate}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >

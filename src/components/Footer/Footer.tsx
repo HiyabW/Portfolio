@@ -51,7 +51,7 @@ function Footer() {
         <Box id="footer">
             <Box>
                 <Typography className="footerLogo subheader"><a href="#homePage">Heyab Woldegebriel</a></Typography>
-                <Typography className="footerDesc halfOpacity"><a href="#homePage">Frontend Developer</a></Typography>
+                <Typography className="footerDesc halfOpacity"><a href="#homePage">Web Developer</a></Typography>
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, flexDirection: 'row' }}>

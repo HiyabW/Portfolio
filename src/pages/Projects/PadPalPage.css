@@ -1,0 +1,590 @@
+.padpalPage {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4vw;
+
+    .padpalLayout {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 6vw;
+    }
+
+    .padpalHero {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        margin-bottom: 6vw;
+        text-align: left;
+        transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .padpalHeroExpanded {
+        max-width: 1200px;
+    }
+
+    .padpalHeroText {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .padpalHighlight {
+        color: #1786d5
+    }
+
+    .padpalPersonaImageContainer {
+        border-radius: 30px;
+        background: linear-gradient(0deg, #d0d0d036 0%, #d0d0d016 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .padpalPersonaImage {
+        width: 90%;
+    }
+
+    .padpalMediaBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .padpalHeroMedia {
+        width: 100%;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .padpalHeroVideo {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .padpalOverviewVideo {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.5vw;
+    }
+
+    .padpalOverviewVideoLabel {
+        font-size: 0.8rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.45;
+    }
+
+    .padpalOverviewVideoEmbed {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .padpalOverviewVideoEmbed iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    .padpalToc {
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5vw;
+        font-size: 14px;
+    }
+
+    .padpalTocTitle {
+        margin-bottom: 0.75vw;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .padpalTocList {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .padpalTocLink {
+        text-decoration: none;
+        color: #6b6b6b;
+        padding: 0.1rem 0;
+        transition: color 0.2s ease;
+    }
+
+    .padpalTocLink:hover {
+        color: #0091E7;
+    }
+
+    .padpalTocLink.active {
+        color: #0091E7;
+    }
+
+    .padpalSection {
+        max-width: 52rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+        text-align: left;
+    }
+
+    .padpalSection+.padpalSection {
+        margin-top: 7.8vw;
+    }
+
+    .padpalPersona {
+        max-width: none;
+    }
+
+    .padpalPersonaLayout {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10vw;
+        margin-top: 2.5vw;
+    }
+
+    .padpalPersonaLeft {
+        flex: 1 1 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 2vw;
+    }
+
+    .padpalPersonaIconWrap {
+        width: 100%;
+        max-width: 200px;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background: rgba(0, 0, 0, 0.06);
+    }
+
+    .padpalPersonaIcon {
+        font-size: clamp(64px, 10vw, 96px);
+        line-height: 1;
+    }
+
+    .padpalPersonaName {
+        font-weight: 700;
+        font-family: var(--secondary-font);
+        font-size: 1.5rem;
+    }
+
+    .padpalPersonaSynopsisRows {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+        width: 100%;
+    }
+
+    .padpalPersonaSynopsisRow {
+        display: grid;
+        grid-template-columns: 1.5rem 1fr;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .padpalPersonaSynopsisIcon {
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    .padpalPersonaSynopsis {
+        text-align: left;
+    }
+
+    .padpalPersonaRight {
+        flex: 1 1 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .padpalPersonaBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+    }
+
+    .padpalPersonaBlockTitle {
+        font-weight: 600;
+        font-family: var(--secondary-font);
+        margin-bottom: 0.25rem;
+    }
+
+    .padpalPersonaList {
+        width: 100%;
+    }
+
+    .padpalPersonaListItem {
+        padding: 1.25vw 1.75vw;
+        border-radius: 24px;
+    }
+
+    .goals {
+        background-color: #e8f3fc;
+    }
+
+    .painPoints {
+        background-color: #ffbf001c;
+    }
+
+    .padpalHowHelpsIntro {
+        margin-top: 0.5vw;
+        margin-bottom: 2vw;
+        opacity: 0.7;
+    }
+
+    .padpalHelpsList {
+        margin-top: 0.5vw;
+    }
+
+    .padpalHelpsItem {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.75vw;
+        padding: 1.5vw 2vw;
+        border-radius: 18px;
+        background: #e8f3fc;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .padpalHelpsItem:hover {
+        box-shadow: 0 12px 40px rgba(0, 80, 180, 0.11), 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        transform: translateY(-2px);
+    }
+
+    .padpalHelpsTitle {
+        flex: 0 0 220px;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+        color: var(--primary-font);
+        line-height: 1.4 !important;
+    }
+
+    .padpalHelpsDesc {
+        flex: 1;
+        font-size: 0.9rem !important;
+        line-height: 1.65 !important;
+        opacity: 0.8;
+    }
+
+    .padpalDiagramContext {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25vw;
+    }
+
+    .padpalDiagramLegend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .padpalDiagramLegendItem {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+    .padpalDiagramLegendDot {
+        flex-shrink: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .leftDot {
+        background-color: #0091E7;
+    }
+
+    .rightDot {
+        background-color: #a855f7;
+    }
+
+    .padpalDiagramThumb {
+        position: relative;
+        cursor: pointer;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 140%;
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .padpalDiagramThumb:focus-visible {
+        outline: 2px solid #0091E7;
+        outline-offset: 3px;
+    }
+
+    .padpalDiagramImg {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: filter 0.25s ease, transform 0.3s ease;
+    }
+
+    .padpalDiagramThumb:hover .padpalDiagramImg {
+        filter: brightness(0.88);
+        transform: scale(1.015);
+    }
+
+    .padpalDiagramHint {
+        position: absolute;
+        bottom: 12px;
+        right: 14px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        backdrop-filter: blur(6px);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .padpalDiagramHint p {
+        color: #fff !important;
+    }
+
+    .padpalDiagramThumb:hover .padpalDiagramHint {
+        opacity: 1;
+    }
+
+    .padpalLightboxOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(6px);
+        z-index: 1300;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2vw;
+        cursor: zoom-out;
+        animation: padpalFadeIn 0.2s ease;
+    }
+
+    @keyframes padpalFadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .padpalLightboxContent {
+        position: relative;
+        cursor: default;
+        max-width: min(92vw, 1400px);
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .padpalLightboxImgWrap {
+        overflow: hidden;
+        border-radius: 16px;
+        cursor: zoom-in;
+        line-height: 0;
+        max-width: 100%;
+        max-height: 88vh;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    }
+
+    .padpalLightboxImgWrap.zoomed {
+        cursor: zoom-out;
+    }
+
+    .padpalLightboxImg {
+        width: 100%;
+        max-height: 88vh;
+        height: auto;
+        object-fit: contain;
+        border-radius: 16px;
+        display: block;
+        transition: transform 0.25s ease;
+        will-change: transform;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    .padpalLightboxImg.zoomed {
+        transform: scale(2.5);
+    }
+
+    .padpalLightboxClose {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        transition: background 0.2s ease;
+        z-index: 1;
+    }
+
+    .padpalLightboxClose:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .padpalMockups {
+        border-radius: 30px;
+        border: 0.5px solid #212121;
+        overflow: hidden;
+    }
+
+    .padpalMockups img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .padpalMockupsFigma {
+        aspect-ratio: 9 / 16;
+        max-height: 80vh;
+        width: 100%;
+        display: flex;
+    }
+
+    .padpalFigmaEmbed {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+
+    .padpalChallengesList {
+        margin-top: 2vw;
+    }
+
+    .padpalChallengeItem {
+        padding: 1.75vw 2.25vw;
+        border-radius: 24px;
+        background: #e8f3fc;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+        text-align: left;
+    }
+
+    .padpalChallengeLabel {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .padpalFutureGrid {
+        margin-top: 2vw;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2vw;
+        text-align: left;
+    }
+
+    .padpalFutureItem {
+        padding: 1.75vw 2.25vw;
+        border-radius: 24px;
+        background: #e8f3fc;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+    }
+
+    .padpalFutureNumber {
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 920px) {
+    .padpalPage {
+        padding-top: 6vw;
+        padding-bottom: 6vw;
+
+        .padpalHero {
+            max-width: 100%;
+            margin-bottom: 8vw;
+        }
+
+        .padpalToc {
+            position: static;
+            margin-bottom: 4vw;
+            flex-direction: column;
+        }
+
+        .padpalTocList {
+            flex-direction: column;
+            gap: 1vw;
+        }
+
+        .padpalSection+.padpalSection {
+            margin-top: 10.4vw;
+        }
+
+        .padpalFutureGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .padpalPersonaLayout {
+            flex-direction: column;
+            gap: 6vw;
+            align-items: stretch;
+        }
+
+        .padpalPersonaLeft {
+            flex: none;
+            max-width: 100%;
+        }
+
+        .padpalPersonaIconWrap {
+            max-width: 160px;
+        }
+
+        .padpalPersonaRight {
+            flex: none;
+            gap: 6vw;
+        }
+
+        .padpalHelpsItem {
+            flex-direction: column;
+            gap: 2vw;
+            padding: 4vw 5vw;
+        }
+
+        .padpalHelpsTitle {
+            flex: none;
+        }
+
+        .padpalDiagramThumb {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}

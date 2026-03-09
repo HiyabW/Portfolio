@@ -5,6 +5,7 @@ type ProjectType = {
     nda: boolean;
     skills: string[];
     link?: string;
+    detailRoute?: string;
 }
 
 export default ProjectType

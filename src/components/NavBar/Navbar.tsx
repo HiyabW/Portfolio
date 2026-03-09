@@ -1,17 +1,19 @@
 import React from "react";
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import MenuIcon from '@mui/icons-material/Menu'
-import Menu from '@mui/material/Menu';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import { useLocation } from "react-router-dom";
 
-import "./Navbar.css"
+import "./Navbar.css";
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const currPage = window.location.pathname
+    const location = useLocation();
+    const currPage = location.pathname;
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -31,34 +33,49 @@ function Navbar() {
     const pages = [
         {
             name: "Projects",
-            link: currPage === "/" ? "#projects" : "/#projects"
+            link: currPage === "/" ? "#projects" : "/#projects",
         },
         {
             name: "About",
-            link: "/about"
+            link: "/about",
         },
         {
             name: "Resume",
-            link: "https://drive.google.com/file/d/1FfE7ADeQH9Zn20GMBc1hPOQTqTLzfaE8/view?usp=sharing"
-        }
-    ]
+            link: "https://drive.google.com/file/d/1FfE7ADeQH9Zn20GMBc1hPOQTqTLzfaE8/view?usp=sharing",
+        },
+    ];
 
 
     return (
         <Box id="navbar">
             <Box>
-                <Typography className="navLogo subheader"><a href={`${currPage === "/" ? "#homePage" : "/"}`}>Hw</a></Typography>
+                <Typography className="navLogo subheader">
+                    <a href={`${currPage === "/" ? "#homePage" : "/"}`}>Hw</a>
+                </Typography>
             </Box>
 
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
-                    <Typography className="navLink"><a href={page.name!=="Resume" ? page.link : undefined} onClick={() => page.name==="Resume" ? window.open(page.link) : undefined}>{page.name}</a></Typography>
+                    <Typography key={page.name} className="navLink">
+                        <a
+                            href={page.name !== "Resume" ? page.link : undefined}
+                            onClick={() =>
+                                page.name === "Resume"
+                                    ? window.open(page.link)
+                                    : undefined
+                            }
+                        >
+                            {page.name}
+                        </a>
+                    </Typography>
                 ))}
             </Box>
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <Typography className="navLink"><a href={"mailto:hiyabwoldegebriel@gmail.co"}>Contact</a></Typography>
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Typography className="navLink">
+                    <a href={"mailto:hiyabwoldegebriel@gmail.co"}>Contact</a>
+                </Typography>
             </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -73,27 +90,29 @@ function Navbar() {
                     id="menu-appbar"
                     anchorEl={anchorElNav}
                     anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
+                        vertical: "bottom",
+                        horizontal: "left",
                     }}
                     keepMounted
                     transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
+                        vertical: "top",
+                        horizontal: "left",
                     }}
                     open={Boolean(anchorElNav)}
                     onClose={handleCloseNavMenu}
-                    sx={{ display: { xs: 'block', md: 'none' } }}
+                    sx={{ display: { xs: "block", md: "none" } }}
                 >
                     {pages.map((page) => (
                         <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                            <Typography sx={{ textAlign: 'center' }}><a href={page.link}>{page.name}</a></Typography>
+                            <Typography sx={{ textAlign: "center" }}>
+                                <a href={page.link}>{page.name}</a>
+                            </Typography>
                         </MenuItem>
                     ))}
                 </Menu>
             </Box>
         </Box>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
