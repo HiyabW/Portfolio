@@ -116,7 +116,6 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5vw;
-        font-size: 14px;
     }
 
     .csTocTitle {
@@ -131,10 +130,29 @@
     }
 
     .csTocLink {
+        font-family: var(--secondary-font);
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.6;
         text-decoration: none;
         color: #6b6b6b;
-        padding: 0.1rem 0;
+        padding: 0.1rem 0 0.1rem 0.85rem;
+        position: relative;
         transition: color 0.2s ease;
+    }
+
+    .csTocLink::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) scaleY(0);
+        width: 2px;
+        height: 0.85em;
+        background: var(--cs-accent);
+        border-radius: 2px;
+        opacity: 0;
+        transition: transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.22s ease;
     }
 
     .csTocLink:hover {
@@ -143,6 +161,12 @@
 
     .csTocLink.active {
         color: var(--cs-accent);
+        font-weight: 500;
+    }
+
+    .csTocLink.active::before {
+        transform: translateY(-50%) scaleY(1);
+        opacity: 1;
     }
 
     .csSection {
@@ -221,8 +245,10 @@
     }
 
     .csPersonaBlockTitle {
-        font-weight: 600;
         font-family: var(--secondary-font);
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.4;
         margin-bottom: 0.25rem;
     }
 
@@ -233,6 +259,11 @@
     .csPersonaListItem {
         padding: 1.25vw 1.75vw;
         border-radius: 24px;
+        transition: transform 0.18s ease;
+    }
+
+    .csPersonaListItem:hover {
+        transform: translateY(-1px);
     }
 
     .goals {
@@ -273,16 +304,16 @@
 
     .csHelpsTitle {
         flex: 0 0 220px;
-        font-weight: 700 !important;
-        font-size: 0.95rem !important;
-        color: var(--primary-font);
-        line-height: 1.4 !important;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--primary-text-color);
+        line-height: 1.4;
     }
 
     .csHelpsDesc {
         flex: 1;
-        font-size: 0.9rem !important;
-        line-height: 1.65 !important;
+        font-size: 0.9rem;
+        line-height: 1.65;
         opacity: 0.8;
     }
 
@@ -552,8 +583,9 @@
         bottom: -2rem;
         left: 50%;
         transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.6) !important;
-        font-size: 0.8rem !important;
+        font-family: var(--secondary-font);
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
         white-space: nowrap;
         pointer-events: none;
     }
@@ -569,6 +601,12 @@
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         text-align: left;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .csChallengeItem:hover {
+        box-shadow: 0 10px 36px rgba(0, 80, 180, 0.1), 0 3px 8px rgba(0, 0, 0, 0.04);
+        transform: translateY(-2px);
     }
 
     .csChallengeLabel {
@@ -590,6 +628,12 @@
         background: var(--cs-accent-bg);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .csFutureItem:hover {
+        box-shadow: 0 10px 36px rgba(0, 80, 180, 0.1), 0 3px 8px rgba(0, 0, 0, 0.04);
+        transform: translateY(-2px);
     }
 
     .csFutureNumber {

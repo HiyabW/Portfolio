@@ -12,11 +12,41 @@ import type { ProjectCaseStudyData } from "./projectCaseStudyTypes.ts";
 const MotionBox = motion(Box);
 const MotionStack = motion(Stack);
 
-const motionDivProps = (delay = 0) => ({
-    initial: { y: "10px", opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    transition: { duration: 0.3, delay },
-});
+const heroVariants = {
+    hidden: { y: 14, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
+};
+
+const sectionVariants = {
+    hidden: { y: 14, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
+};
+
+const listContainerVariants = {
+    hidden: {},
+    visible: {
+        transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+    },
+};
+
+const listItemVariants = {
+    hidden: { y: 10, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.25, ease: "easeOut" as const },
+    },
+};
+
+const viewportOnce = { once: true, amount: 0.1 } as const;
 
 type TocProps = {
     sections: Array<{ id: string; label: string }>;
@@ -24,6 +54,12 @@ type TocProps = {
 };
 
 function CaseStudyToc({ sections, activeSectionId }: TocProps) {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
     return (
         <Box className="csToc">
             <Stack spacing={1} className="csTocList">
@@ -32,6 +68,7 @@ function CaseStudyToc({ sections, activeSectionId }: TocProps) {
                         key={section.id}
                         href={`#${section.id}`}
                         className={`csTocLink ${activeSectionId === section.id ? "active" : ""}`}
+                        onClick={(e) => handleClick(e, section.id)}
                     >
                         {section.label}
                     </a>
@@ -149,7 +186,9 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                 {/* ── Hero ── */}
                 <MotionBox
                     className={`csHero${videoExpanded ? " csHeroExpanded" : ""}`}
-                    {...motionDivProps(0.1)}
+                    variants={heroVariants}
+                    initial="hidden"
+                    animate="visible"
                 >
                     <Stack spacing={3} alignItems="left" className="csHeroText">
                         <Typography align="left">{data.hero.title}</Typography>
@@ -208,7 +247,7 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
 
                 {/* ── Content ── */}
                 <Grid size={{ xs: 12, md: 9 }} className="csContent">
-                    <MotionStack spacing={10} {...motionDivProps(0.2)}>
+                    <Stack spacing={10}>
 
                         {/* Project Overview */}
                         {data.overview && (
@@ -216,7 +255,10 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="overview"
                                 data-section-id="overview"
                                 className="csSection"
-                                {...motionDivProps(0.25)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">Project Overview</Typography>
                                 <Typography>{data.overview.text}</Typography>
@@ -244,7 +286,10 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="user-persona"
                                 data-section-id="user-persona"
                                 className="csSection csPersona"
-                                {...motionDivProps(0.25)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">User Persona</Typography>
                                 {data.userPersona.intro && (
@@ -283,25 +328,39 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                             <Typography className="csPersonaBlockTitle">
                                                 Persona Goals
                                             </Typography>
-                                            <Stack spacing={1.5} className="csPersonaList">
+                                            <MotionStack
+                                                spacing={1.5}
+                                                className="csPersonaList"
+                                                variants={listContainerVariants}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={viewportOnce}
+                                            >
                                                 {data.userPersona.goals.map((goal, i) => (
-                                                    <Box key={i} className="csPersonaListItem goals">
+                                                    <MotionBox key={i} className="csPersonaListItem goals" variants={listItemVariants}>
                                                         <Typography className="skillsBadges">{goal}</Typography>
-                                                    </Box>
+                                                    </MotionBox>
                                                 ))}
-                                            </Stack>
+                                            </MotionStack>
                                         </Box>
                                         <Box className="csPersonaBlock">
                                             <Typography className="csPersonaBlockTitle">
                                                 Pain Points
                                             </Typography>
-                                            <Stack spacing={1.5} className="csPersonaList">
+                                            <MotionStack
+                                                spacing={1.5}
+                                                className="csPersonaList"
+                                                variants={listContainerVariants}
+                                                initial="hidden"
+                                                whileInView="visible"
+                                                viewport={viewportOnce}
+                                            >
                                                 {data.userPersona.painPoints.map((point, i) => (
-                                                    <Box key={i} className="csPersonaListItem painPoints">
+                                                    <MotionBox key={i} className="csPersonaListItem painPoints" variants={listItemVariants}>
                                                         <Typography className="skillsBadges">{point}</Typography>
-                                                    </Box>
+                                                    </MotionBox>
                                                 ))}
-                                            </Stack>
+                                            </MotionStack>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -314,7 +373,10 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="product-decisions"
                                 data-section-id="product-decisions"
                                 className="csSection csHowHelps"
-                                {...motionDivProps(0.3)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">
                                     {data.productDecisions.sectionLabel ?? "Product Decisions"}
@@ -324,14 +386,21 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                         {data.productDecisions.intro}
                                     </Typography>
                                 )}
-                                <Stack spacing={2} className="csHelpsList">
+                                <MotionStack
+                                    spacing={2}
+                                    className="csHelpsList"
+                                    variants={listContainerVariants}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={viewportOnce}
+                                >
                                     {data.productDecisions.items.map((item) => (
-                                        <Box key={item.title} className="csHelpsItem">
+                                        <MotionBox key={item.title} className="csHelpsItem" variants={listItemVariants}>
                                             <Typography className="csHelpsTitle">{item.title}</Typography>
                                             <Typography className="csHelpsDesc">{item.desc}</Typography>
-                                        </Box>
+                                        </MotionBox>
                                     ))}
-                                </Stack>
+                                </MotionStack>
                             </MotionBox>
                         )}
 
@@ -341,7 +410,10 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="design-process"
                                 data-section-id="design-process"
                                 className="csSection"
-                                {...motionDivProps(0.4)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">
                                     {data.designProcess.sectionLabel ?? "Design Process"}
@@ -399,7 +471,10 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="technical-implementation"
                                 data-section-id="technical-implementation"
                                 className="csSection"
-                                {...motionDivProps(0.45)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">Technical Implementation</Typography>
                                 <Box className="csMediaBlock">
@@ -492,19 +567,29 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="challenges-learnings"
                                 data-section-id="challenges-learnings"
                                 className="csSection csChallenges"
-                                {...motionDivProps(0.5)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">Challenges / Learnings</Typography>
-                                <Stack spacing={3} className="csChallengesList">
+                                <MotionStack
+                                    spacing={3}
+                                    className="csChallengesList"
+                                    variants={listContainerVariants}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={viewportOnce}
+                                >
                                     {data.challenges.map((item) => (
-                                        <Box key={item.label} className="csChallengeItem">
+                                        <MotionBox key={item.label} className="csChallengeItem" variants={listItemVariants}>
                                             <Typography className="csChallengeLabel">
                                                 {item.label}
                                             </Typography>
                                             <Typography>{item.desc}</Typography>
-                                        </Box>
+                                        </MotionBox>
                                     ))}
-                                </Stack>
+                                </MotionStack>
                             </MotionBox>
                         )}
 
@@ -514,23 +599,32 @@ function ProjectCaseStudyTemplate({ data }: { data: ProjectCaseStudyData }) {
                                 id="future-improvements"
                                 data-section-id="future-improvements"
                                 className="csSection csFuture"
-                                {...motionDivProps(0.55)}
+                                variants={sectionVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                             >
                                 <Typography className="subheader">Future Improvements</Typography>
-                                <Box className="csFutureGrid">
+                                <MotionBox
+                                    className="csFutureGrid"
+                                    variants={listContainerVariants}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={viewportOnce}
+                                >
                                     {data.futureImprovements.map((item) => (
-                                        <Box key={item.label} className="csFutureItem">
+                                        <MotionBox key={item.label} className="csFutureItem" variants={listItemVariants}>
                                             <Typography className="csFutureNumber">
                                                 {item.label}
                                             </Typography>
                                             <Typography>{item.desc}</Typography>
-                                        </Box>
+                                        </MotionBox>
                                     ))}
-                                </Box>
+                                </MotionBox>
                             </MotionBox>
                         )}
 
-                    </MotionStack>
+                    </Stack>
                 </Grid>
             </Grid>
 

@@ -99,7 +99,7 @@ function HomePage() {
             </Box>
           </Box>
           <MotionBox {...motionDivProps(0.3)}>
-            <Typography className="introDesc">I'm a UI/UX Designer and Full Stack Developer with <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
+            <Typography className="introDesc">I'm a Full Stack Developer and UI/UX Designer with <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
           </MotionBox>
           <MotionBox {...motionDivProps(0.6, 1.4, 0.1, "spring")}>
             <ContactIcons />
