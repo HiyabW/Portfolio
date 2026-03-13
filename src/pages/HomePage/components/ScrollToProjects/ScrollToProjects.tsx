@@ -25,18 +25,18 @@ const ScrollIndicator = () => {
         <motion.div
             animate={controls}
             initial={{ opacity: 1 }}
+            id="scrollToProjects"
             style={{
-                zIndex: 2,
+                zIndex: 20,
                 textAlign: 'center',
             }}
         >
-            <p style={{opacity:'50%'}}>Check out my projects!</p>
             <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
             >
 
-                <IconButton href="#projects"><ArrowDownwardIcon sx={{opacity:'50%'}} fontSize="large" /></IconButton>
+                <IconButton href="#projects" sx={{ backgroundColor: 'rgb(255, 246, 202)'}}><ArrowDownwardIcon fontSize="large" /></IconButton>
 
             </motion.div>
         </motion.div>

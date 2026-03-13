@@ -10,10 +10,10 @@
         width: 25px;
         height: 25px;
         transition: 0.3s;
+        color: rgb(255, 246, 202);
 
         &:hover {
             transform: scale(1.1);
-            color: var(--primary-color);
         }
     }
 

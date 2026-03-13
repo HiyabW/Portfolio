@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 
   background: var(--Page-Bg, linear-gradient(180deg, #f7fcff 0%, #fff9fe 50%, #fffdf7 100%));
   color:#212121;
@@ -10,7 +10,7 @@
 
   h1 {
     font-family: 'Libre Franklin';
-    font-size: 100px;
+    font-size: 8vw;
     font-weight: 700;
     text-transform: capitalize;
   }

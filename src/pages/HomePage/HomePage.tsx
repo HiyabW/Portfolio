@@ -9,6 +9,7 @@ import ContactIcons from "./components/ContactIcons/ContactIcons.tsx";
 import { useLocation } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
+import { NeatGradient } from "@firecms/neat";
 
 const MotionStack = motion(Stack);
 const MotionBox = motion(Box);
@@ -58,6 +59,42 @@ function HomePage() {
   ];
 
   const location = useLocation();
+  const gradientRef = React.useRef<HTMLCanvasElement | null>(null);
+
+  React.useEffect(() => {
+    if (!gradientRef.current) return;
+
+    const gradient = new NeatGradient({
+      ref: gradientRef.current,
+      colors: [
+        { color: "#e14a4c", enabled: true },
+        { color: "#f3732d", enabled: true },
+        { color: "#f9961d", enabled: true },
+        { color: "#f9c750", enabled: true },
+        { color: "#91be6d", enabled: true },
+        { color: "#42aa8b", enabled: true },
+        { color: "#577591", enabled: true },
+      ],
+      speed: 1,
+      horizontalPressure: 3,
+      verticalPressure: 4,
+      waveFrequencyX: 2,
+      waveFrequencyY: 2,
+      waveAmplitude: 3,
+      shadows: 3,
+      highlights: 4,
+      colorSaturation: 2,
+      colorBrightness: 1,
+      wireframe: false,
+      colorBlending: 8,
+      backgroundColor: "#f7fcff",
+      backgroundAlpha: 1,
+      grainIntensity: 0,
+      resolution: 1,
+    });
+
+    return () => gradient.destroy();
+  }, []);
 
   React.useEffect(() => {
     if (location.hash) {
@@ -96,12 +133,16 @@ function HomePage() {
             willChange: 'auto',
           }}
         >
+          <canvas
+            className="heroGradientCanvas"
+            ref={gradientRef}
+          />
           <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
             <Box id="hiAndName">
               <Typography>Hi, i'm</Typography>
               <Box id="name">
-                <Typography variant="h1">Hiyab</Typography>
-                <Typography variant="h1">Woldegebriel</Typography>
+                <Typography variant="h1">HIYAB</Typography>
+                <Typography variant="h1">WOLDEGEBRIEL</Typography>
               </Box>
             </Box>
             <MotionBox {...motionDivProps(0.3)}>
@@ -110,20 +151,19 @@ function HomePage() {
                 <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.
               </Typography>
             </MotionBox>
-            <MotionBox {...motionDivProps(0.6, 1.4, 0.1, "spring")}>
+            <MotionBox {...motionDivProps(0.6, 1, 0.1, "spring")}>
               <ContactIcons />
+              <MotionBox
+                className="scrollIndicatorWrapper"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 1.3 }}
+              >
+                <ScrollIndicator />
+              </MotionBox>
             </MotionBox>
           </MotionStack>
         </motion.div>
-
-        <MotionBox
-          className="scrollIndicatorWrapper"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 1.3 }}
-        >
-          <ScrollIndicator />
-        </MotionBox>
       </div>
 
       {/* Projects — z-index: 2, slides over the sticky hero */}
