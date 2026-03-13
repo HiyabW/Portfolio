@@ -97,6 +97,7 @@
   }
   .introDesc {
     width: 370px!important;
+    width: 100%!important;
   }
 }
 

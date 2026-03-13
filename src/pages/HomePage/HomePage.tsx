@@ -137,9 +137,8 @@ function HomePage() {
             className="heroGradientCanvas"
             ref={gradientRef}
           />
-          <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
+          <MotionStack {...motionDivProps(0)} className="intro" spacing={5} style={{ width: "70vw" }}>
             <Box id="hiAndName">
-              <Typography>Hi, i'm</Typography>
               <Box id="name">
                 <Typography variant="h1">HIYAB</Typography>
                 <Typography variant="h1">WOLDEGEBRIEL</Typography>

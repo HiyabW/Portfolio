@@ -28,6 +28,7 @@
     "react-scripts": "5.0.1",
     "shadergradient": "^1.3.5",
     "three": "^0.182.0",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
