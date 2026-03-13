@@ -152,6 +152,9 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
+            {project.id === 1 && (
+                <Typography variant="h1" marginBottom="40px">PROJECTS</Typography>
+            )} 
             <Grid
                 container
                 spacing={4}

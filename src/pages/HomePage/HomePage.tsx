@@ -60,6 +60,8 @@ function HomePage() {
 
   const location = useLocation();
   const gradientRef = React.useRef<HTMLCanvasElement | null>(null);
+  const gradientInstance = React.useRef<any>(null);
+  const heroRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (!gradientRef.current) return;
@@ -93,7 +95,59 @@ function HomePage() {
       resolution: 1,
     });
 
-    return () => gradient.destroy();
+    gradientInstance.current = gradient;
+
+    return () => {
+      gradient.destroy();
+      gradientInstance.current = null;
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    // Normalized cursor position (0–1), defaulting to center
+    const current = { x: 0.5, y: 0.5 };
+    const target = { x: 0.5, y: 0.5 };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
+      target.x = (e.clientX - rect.left) / rect.width;
+      target.y = (e.clientY - rect.top) / rect.height;
+    };
+
+    const handleMouseLeave = () => {
+      target.x = 0.5;
+      target.y = 0.5;
+    };
+
+    hero.addEventListener('mousemove', handleMouseMove);
+    hero.addEventListener('mouseleave', handleMouseLeave);
+
+    let rafId: number;
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const animate = () => {
+      current.x = lerp(current.x, target.x, 0.04);
+      current.y = lerp(current.y, target.y, 0.04);
+
+      if (gradientInstance.current) {
+        // Nudge ±1 around the initial defaults (hP: 3, vP: 4) so no colors leave the canvas
+        gradientInstance.current.horizontalPressure = 2 + current.x * 2;
+        gradientInstance.current.verticalPressure = 3 + current.y * 2;
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      hero.removeEventListener('mousemove', handleMouseMove);
+      hero.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   React.useEffect(() => {
@@ -125,7 +179,7 @@ function HomePage() {
     <Stack id="homePage" spacing={0}>
 
       {/* Hero — sticky so it stays pinned while projects slide over it */}
-      <div id="heroSection">
+      <div id="heroSection" ref={heroRef}>
         <motion.div
           className="heroContent"
           style={{

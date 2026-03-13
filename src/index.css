@@ -4,7 +4,8 @@
   --primary-color: #0091E7;
   --primary-text-color: #212121;
   --primary-font: "Archivo";
-  --secondary-font: "Libre Franklin"
+  --secondary-font: "Libre Franklin";
+  --navbar-height: 76px;
 }
 
 html {

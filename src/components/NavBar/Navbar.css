@@ -10,6 +10,8 @@
     z-index: 3;
     backdrop-filter: blur(50px);
     border-radius: 0px 0px 30px 30px;
+    height: var(--navbar-height);
+    box-sizing: border-box;
 
 
     .navLogo {
