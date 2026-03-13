@@ -4,16 +4,62 @@ import Typography from "@mui/material/Typography"
 
 import "./AboutPage.css"
 import Stack from "@mui/material/Stack";
-import SkillsBadge from "../../components/SkillsBadge/SkillsBadge.tsx";
-import Grid from "@mui/material/Grid";
 import { motion } from "framer-motion";
+import SkillMosaic, { SkillItem } from "../../components/SkillMosaic/SkillMosaic.tsx";
+
+const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const SI = "https://cdn.simpleicons.org";
+
+// Each array is ordered by importance. "large" tiles appear first in each section
+// and anchor the mosaic; subsequent large tiles mid-array create the jumbled look.
+// Layout in a 3-col dense grid: large (2×2) fills left, two smalls stack right of it.
+
+const languagesAndFrameworks: SkillItem[] = [
+    // large anchor → [JS][JS][TS  ]
+    //                [JS][JS][React]
+    { name: "JavaScript", logoUrl: `${DI}/javascript/javascript-original.svg`, size: "large" },
+    { name: "TypeScript", logoUrl: `${DI}/typescript/typescript-original.svg`, size: "small" },
+    { name: "React",      logoUrl: `${DI}/react/react-original.svg`,           size: "small" },
+    // three smalls fill a row
+    { name: "PostgreSQL", logoUrl: `${DI}/postgresql/postgresql-original.svg`, size: "small" },
+    { name: "NextJS",     logoUrl: `${DI}/nextjs/nextjs-original.svg`,         size: "small" },
+    { name: "REST APIs",  logoUrl: `${SI}/postman/FF6C37`,                     size: "small" },
+    // mid-array large → jumbles the grid: [Redis][Redis][Mongo]
+    //                                      [Redis][Redis][Python]
+    { name: "Redis",      logoUrl: `${DI}/redis/redis-original.svg`,           size: "large" },
+    { name: "MongoDB",    logoUrl: `${DI}/mongodb/mongodb-original.svg`,       size: "small" },
+    { name: "Python",     logoUrl: `${DI}/python/python-original.svg`,         size: "small" },
+    // final row of smalls
+    { name: "HTML",       logoUrl: `${DI}/html5/html5-original.svg`,           size: "small" },
+    { name: "CSS",        logoUrl: `${DI}/css3/css3-original.svg`,             size: "small" },
+    { name: "Prisma",     logoUrl: `${DI}/prisma/prisma-original.svg`,         size: "small" },
+];
+
+const toolsAndPlatforms: SkillItem[] = [
+    // large anchor top-left: [NodeJS][NodeJS][Express]
+    //                         [NodeJS][NodeJS][Flask  ]
+    { name: "NodeJS",          logoUrl: `${DI}/nodejs/nodejs-original.svg`,                            size: "large"  },
+    { name: "Express",         logoUrl: `${DI}/express/express-original.svg`,                          size: "small"  },
+    { name: "Flask",           logoUrl: `${DI}/flask/flask-original.svg`,                              size: "small"  },
+    // dense fills Git(col1), then Figma medium spans cols 2-3: [Git][Figma][Figma]
+    //                                                            [Wpk][Figma][Figma] ← 2×1 accent
+    { name: "Git",             logoUrl: `${DI}/git/git-original.svg`,                                  size: "small"  },
+    { name: "Figma",           logoUrl: `${DI}/figma/figma-original.svg`,                              size: "medium" },
+    { name: "Webpack",         logoUrl: `${DI}/webpack/webpack-original.svg`,                          size: "small"  },
+    // three smalls row
+    { name: "Jest",            logoUrl: `${DI}/jest/jest-plain.svg`,                                   size: "small"  },
+    { name: "Developer Tools", logoUrl: `${DI}/chrome/chrome-original.svg`,                           size: "small"  },
+    { name: "Cypress",         logoUrl: `${SI}/cypress/058a5e`,                                        size: "small"  },
+    // CI/CD fills gap, Docker large anchors bottom: [CI/CD][Docker][Docker]
+    //                                                 [Kube ][Docker][Docker]
+    { name: "CI/CD",           logoUrl: `${SI}/githubactions/2088FF`,                                  size: "small"  },
+    { name: "Docker",          logoUrl: `${DI}/docker/docker-original.svg`,                            size: "large"  },
+    { name: "Kubernetes",      logoUrl: `${DI}/kubernetes/kubernetes-plain.svg`,                       size: "small"  },
+    { name: "Jenkins",         logoUrl: `${DI}/jenkins/jenkins-original.svg`,                          size: "small"  },
+    { name: "AWS",             logoUrl: `${DI}/amazonwebservices/amazonwebservices-plain-wordmark.svg`, size: "small"  },
+];
 
 function AboutPage() {
-    const frontendTechnologies = ["React", "SQL", "Typescript", "SQL", "Styled Components",
-        "React Queries", "HTML/CSS", "Tailwind CSS", "FaceAPI", "GoJs", "Javvascript", "Figma", "NodeJs", "Express", "Flask"]
-
-    const toolsAndPlatforms = ["Git", "Github Actions", "Figma", "npm/yarn/pip", "Webpack", "Jest", "Developer Tools", "Cypress", "CI/CD", "Docker", "Kubernetes", "Jenkins"]
-
     const motionDivProps = (delay = 0) => {
         return {
             initial: { y: "10px", opacity: 0 },
@@ -25,8 +71,8 @@ function AboutPage() {
         };
     }
 
-    const MotionBox = motion(Box); // Convert Stack to a motion component
-    const MotionStack = motion(Stack); // Convert Stack to a motion component
+    const MotionBox = motion(Box);
+    const MotionStack = motion(Stack);
 
     return (
         <Box className="aboutPage">
@@ -34,7 +80,7 @@ function AboutPage() {
                 <Box className="aboutIntro" >
                     <MotionStack {...motionDivProps(0)} className="aboutBlurb" spacing={2}>
                         <Typography>About Me</Typography>
-                        <Typography className="subheader">I'm a Frontend Developer from Los Angeles, CA ☼</Typography>
+                        <Typography className="subheader">I'm a Web Developer from Los Angeles, CA ☀️</Typography>
                         <Typography className="subheader"> I build performant, responsive interfaces with modern web tools.</Typography>
                     </MotionStack>
                     <MotionBox {...motionDivProps(0.3)} className="aboutImg">
@@ -53,28 +99,10 @@ function AboutPage() {
                         <Typography>I've worked with a range of technologies in web development,
                             from back-end to design.</Typography>
                     </Box>
-                    <Grid className="skills" spacing={5}>
-                        <Box className="skillsCard">
-                            <Typography className="halfOpacity"><b>Frontend Technologies</b></Typography>
-                            <Box className="skillsList">
-                                {
-                                    frontendTechnologies.map((skill) => {
-                                        return <SkillsBadge className={'skill'}><Typography className="skillsBadges">{skill}</Typography></SkillsBadge>
-                                    })
-                                }
-                            </Box>
-                        </Box>
-                        <Box className="skillsCard">
-                            <Typography className="halfOpacity"><b>Tools & Platforms</b></Typography>
-                            <Box className="skillsList">
-                                {
-                                    toolsAndPlatforms.map((skill) => {
-                                        return <SkillsBadge className={'skill'}><Typography className="skillsBadges">{skill}</Typography></SkillsBadge>
-                                    })
-                                }
-                            </Box>
-                        </Box>
-                    </Grid>
+                    <Box className="skills">
+                        <SkillMosaic title="Technologies & Frameworks" skills={languagesAndFrameworks} />
+                        <SkillMosaic title="Tools & Platforms" skills={toolsAndPlatforms} />
+                    </Box>
                 </MotionBox>
 
                 <MotionBox {...motionDivProps(0.12)} className="photographySection">

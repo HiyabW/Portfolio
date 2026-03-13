@@ -50,10 +50,6 @@
                 color: var(--primary-color);
                 opacity: 1;
             }
-
-            &:hover a {
-                color: white;
-            }
         }
     }
 }

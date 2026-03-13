@@ -101,9 +101,7 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
                 <Typography>{project.desc}</Typography>
                 <Box className="skills">
                     {project.skills.map((skill, i) => (
-                        <SkillsBadge key={i} className="skill">
-                            <Typography className="skillsBadges">{skill}</Typography>
-                        </SkillsBadge>
+                        <SkillsBadge key={i} label={skill} variant="outlined" />
                     ))}
                 </Box>
 

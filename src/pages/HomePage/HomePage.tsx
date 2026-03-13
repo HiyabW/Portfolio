@@ -106,12 +106,12 @@ function HomePage() {
   }, [location]);
 
   const { scrollY } = useScroll();
-  const spring = { stiffness: 80, damping: 25, restDelta: 0.001 };
+  const spring = { stiffness: 60, damping: 25, restDelta: 0.001 };
 
   // As the projects section slides over the hero, the hero content
   // scales back with perspective — giving a layered 3D depth feel.
   const heroScale = useSpring(
-    useTransform(scrollY, [0, 700], [1, 0.88]),
+    useTransform(scrollY, [0, 2000], [1, 0.88]),
     spring
   );
 
@@ -141,7 +141,7 @@ function HomePage() {
             <Box id="hiAndName">
               <Box id="name">
                 <Typography variant="h1">HIYAB</Typography>
-                <Typography variant="h1">WOLDEGEBRIEL</Typography>
+                <Typography variant="h1">WOLDE&shy;GEBRIEL</Typography>
               </Box>
             </Box>
             <MotionBox {...motionDivProps(0.3)}>

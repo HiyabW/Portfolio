@@ -50,7 +50,7 @@ function Footer() {
     return (
         <Box id="footer">
             <Box>
-                <Typography className="footerLogo subheader"><a href="#homePage">Heyab Woldegebriel</a></Typography>
+                <Typography className="footerLogo subheader"><a href="#homePage">Hiyab Woldegebriel</a></Typography>
                 <Typography className="footerDesc halfOpacity"><a href="#homePage">Web Developer</a></Typography>
             </Box>
 

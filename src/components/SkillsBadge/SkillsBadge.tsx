@@ -1,19 +1,21 @@
-import Button from "@mui/material/Button"
-import { fontSize, padding } from "@mui/system";
+import Chip from "@mui/material/Chip"
+import { border } from "@mui/system"
 import styled from "@mui/system/styled"
 
-const SkillsBadge = styled(Button)(({ theme }) => ({
-display: 'flex',
-    padding: '0.625vw 0.9375vw',
-    justifyContent: 'center',
-    alignItems: 'center',
+const SkillsBadge = styled(Chip)({
     borderRadius: '30px',
-    border: '0.5px solid #0091E7',
     cursor: 'text',
+    backgroundColor: 'var(--primary-text-color)',
+    border: '0.5px solid var(--primary-text-color)',
 
-    [theme.breakpoints.up("sm")]: {
-        padding: '1vw 1.5vw'
-    }
-}));
+    '& .MuiChip-label': {
+        fontSize: '14px',
+        fontStyle: 'normal',
+        padding: '10px 14px',
+        fontFamily: 'Libre Franklin',
+        letterSpacing: '0.55px',
+        color: 'white',
+    },
+})
 
 export default SkillsBadge
