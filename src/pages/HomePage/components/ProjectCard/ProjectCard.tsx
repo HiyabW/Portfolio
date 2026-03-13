@@ -37,7 +37,7 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
     }, [isHovered]);
 
     const imageComponent = useMemo(() => (
-        <Grid size={{ xs: 12, md: 7 }} className={`imageGrid imageGrid${project.id}`}>
+        <Grid size={{ xs: 12, md: 8 }} className={`imageGrid imageGrid${project.id}`}>
             <Box
                 sx={{ position: 'relative', width: '100%', height: '100%' }}
             >
@@ -91,7 +91,7 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
     ), [showGif, isHovered, project.id, project.name]);
 
     const textComponent = useMemo(() => (
-        <Grid size={{ xs: 12, md: 5 }} className="text">
+        <Grid size={{ xs: 12, md: 4 }} className="text">
             <Box className="projectTitle">
                 <Typography className="subheader number">0{index + 1}.</Typography>
                 <Typography className="subheader">{project.name}</Typography>

@@ -1,16 +1,17 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
 import "../../styles/HomePage.css";
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography'
+import Typography from '@mui/material/Typography';
 import ProjectCard from "./components/ProjectCard/ProjectCard.tsx";
 import ContactIcons from "./components/ContactIcons/ContactIcons.tsx";
-import RotatingDesc from "./components/RotatingDesc/RotatingDesc.tsx"
 import { useLocation } from "react-router-dom";
-import framer, { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
+
+const MotionStack = motion(Stack);
+const MotionBox = motion(Box);
 
 function HomePage() {
   const projects = [
@@ -47,15 +48,14 @@ function HomePage() {
       nda: true,
       skills: ["Javascript", "Cypress", "Flask"]
     },
-    {
-      id: 4,
-      name: 'Sprint Progress Tracker',
-      desc: 'Enhanced team productivity by developing a dynamic, intuitive dashboard to track tasking progress',
-      nda: true,
-      skills: ["React", "HTML/CSS", "Javascript"]
-    },
-
-  ]
+    // {
+    //   id: 4,
+    //   name: 'Sprint Progress Tracker',
+    //   desc: 'Enhanced team productivity by developing a dynamic, intuitive dashboard to track tasking progress',
+    //   nda: true,
+    //   skills: ["React", "HTML/CSS", "Javascript"]
+    // },
+  ];
 
   const location = useLocation();
 
@@ -68,63 +68,71 @@ function HomePage() {
     }
   }, [location]);
 
-  const motionDivProps = (delay = 0, scale = 1, duration = 0.3, type = "") => {
-    return {
-      initial: { y: "10px", opacity: 0 },
-      animate: { y: 0, opacity: 1, scale: scale },
-      transition: {
-        duration: duration,
-        delay: delay,
-        type: type,
-        bounce: 0.2, // Less bouncy
-        damping: 15, // Adds more friction
-        stiffness: 300
-      }
-    };
-  }
+  const { scrollY } = useScroll();
+  const spring = { stiffness: 80, damping: 25, restDelta: 0.001 };
 
-  const MotionStack = motion(Stack); // Convert Stack to a motion component
-  const MotionBox = motion(Box); // Convert Stack to a motion component
+  // As the projects section slides over the hero, the hero content
+  // scales back with perspective — giving a layered 3D depth feel.
+  const heroScale = useSpring(
+    useTransform(scrollY, [0, 700], [1, 0.88]),
+    spring
+  );
+
+  const motionDivProps = (delay = 0, scale = 1, duration = 0.3, type = "") => ({
+    initial: { y: "10px", opacity: 0 },
+    animate: { y: 0, opacity: 1, scale },
+    transition: { duration, delay, type, bounce: 0.2, damping: 15, stiffness: 300 },
+  });
 
   return (
     <Stack id="homePage" spacing={0}>
-      <Stack id="heroSection" spacing={10}>
-        <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
-          <Box
-            id="hiAndName">
-            <Typography>Hi, i'm</Typography>
-            <Box id="name">
-              <Typography variant="h1"><i>Hiyab</i></Typography>
-              <Typography variant="h1"><i>Woldegebriel</i></Typography>
+
+      {/* Hero — sticky so it stays pinned while projects slide over it */}
+      <div id="heroSection">
+        <motion.div
+          className="heroContent"
+          style={{
+            scale: heroScale,
+            willChange: 'auto',
+          }}
+        >
+          <MotionStack {...motionDivProps(0)} className="intro" spacing={5}>
+            <Box id="hiAndName">
+              <Typography>Hi, i'm</Typography>
+              <Box id="name">
+                <Typography variant="h1">Hiyab</Typography>
+                <Typography variant="h1">Woldegebriel</Typography>
+              </Box>
             </Box>
-          </Box>
-          <MotionBox {...motionDivProps(0.3)}>
-            <Typography className="introDesc">I'm a Full Stack Developer and UI/UX Designer with <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.</Typography>
-          </MotionBox>
-          <MotionBox {...motionDivProps(0.6, 1.4, 0.1, "spring")}>
-            <ContactIcons />
-          </MotionBox >
-          {/* <Box>
-            <RotatingDesc />
-          </Box> */}
-        </MotionStack>
+            <MotionBox {...motionDivProps(0.3)}>
+              <Typography className="introDesc">
+                I'm a Full Stack Developer and UI/UX Designer with{" "}
+                <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.
+              </Typography>
+            </MotionBox>
+            <MotionBox {...motionDivProps(0.6, 1.4, 0.1, "spring")}>
+              <ContactIcons />
+            </MotionBox>
+          </MotionStack>
+        </motion.div>
+
         <MotionBox
+          className="scrollIndicatorWrapper"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.3,
-            delay: 1.3
-          }}>
+          transition={{ duration: 0.3, delay: 1.3 }}
+        >
           <ScrollIndicator />
         </MotionBox>
+      </div>
+
+      {/* Projects — z-index: 2, slides over the sticky hero */}
+      <Stack spacing={20} id="projects">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.id} {...project} index={index} />
+        ))}
       </Stack>
-      <MotionStack {...motionDivProps(0)} spacing={20} id="projects">
-        {
-          projects.map((project, index) => {
-            return <ProjectCard key={project.id} {...project} index={index} />
-          })
-        }
-      </MotionStack>
+
     </Stack>
   );
 }
