@@ -24,15 +24,35 @@
 
     .navLink {
         margin-left: 2rem;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
 
         a {
             opacity: 50%;
             font-size: 16px !important;
             text-decoration: none;
             cursor: pointer;
+            transition: color 0.3s ease, opacity 0.3s ease;
 
             &:visited {
                 opacity: 50%;
+            }
+        }
+
+        &:hover a {
+            color: var(--primary-color);
+            opacity: 1;
+        }
+
+        &.active {
+            a, a:visited {
+                color: var(--primary-color);
+                opacity: 1;
+            }
+
+            &:hover a {
+                color: white;
             }
         }
     }

@@ -110,6 +110,13 @@
 }
 
 @media (max-width: 700px) {
+    .projectCard .imageGrid {
+        order: 1;
+    }
+    .projectCard .text {
+        order: 2;
+        padding: 5vw!important;
+    }
     .imageGrid1, .imageGrid2  {
             height: 80vw!important;
     }

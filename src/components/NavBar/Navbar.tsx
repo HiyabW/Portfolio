@@ -12,8 +12,22 @@ import "./Navbar.css";
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [projectsInView, setProjectsInView] = React.useState(false);
     const location = useLocation();
     const currPage = location.pathname;
+
+    React.useEffect(() => {
+        const projectsEl = document.getElementById("projects");
+        if (!projectsEl) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => setProjectsInView(entry.isIntersecting),
+            { threshold: 0.1 }
+        );
+
+        observer.observe(projectsEl);
+        return () => observer.disconnect();
+    }, [currPage]);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -34,14 +48,17 @@ function Navbar() {
         {
             name: "Projects",
             link: currPage === "/" ? "#projects" : "/#projects",
+            route: null,
         },
         {
             name: "About",
             link: "/about",
+            route: "/about",
         },
         {
             name: "Resume",
             link: "https://drive.google.com/file/d/1FfE7ADeQH9Zn20GMBc1hPOQTqTLzfaE8/view?usp=sharing",
+            route: null,
         },
     ];
 
@@ -56,7 +73,15 @@ function Navbar() {
 
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
-                    <Typography key={page.name} className="navLink">
+                    <Typography
+                        key={page.name}
+                        className={`navLink${
+                            (page.name === "Projects" && projectsInView) ||
+                            (page.route && currPage === page.route)
+                                ? " active"
+                                : ""
+                        }`}
+                    >
                         <a
                             href={page.name !== "Resume" ? page.link : undefined}
                             onClick={() =>
