@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { usePageTransition } from "../../../../context/TransitionContext.tsx";
 
 import ProjectType from "./types/ProjectType";
 import SkillsBadge from "../../../../components/SkillsBadge/SkillsBadge.tsx";
@@ -17,11 +17,11 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
     const [showGif, setShowGif] = useState(false);
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: false, margin: "-100px" });
-    const navigate = useNavigate();
+    const { transitionTo } = usePageTransition();
 
     const handleNavigate = () => {
         if (project.detailRoute) {
-            navigate(project.detailRoute);
+            transitionTo(project.detailRoute);
         } else if (project.link) {
             window.open(project.link, "_blank");
         }
@@ -152,9 +152,9 @@ function ProjectCard({ index, ...project }: ProjectType & { index: number }) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {project.id === 1 && (
+            {/* {project.id === 1 && (
                 <Typography variant="h1" marginBottom="40px">PROJECTS</Typography>
-            )} 
+            )}  */}
             <Grid
                 container
                 spacing={4}

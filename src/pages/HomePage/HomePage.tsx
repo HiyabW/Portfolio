@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ProjectCard from "./components/ProjectCard/ProjectCard.tsx";
 import ContactIcons from "./components/ContactIcons/ContactIcons.tsx";
 import { useLocation } from "react-router-dom";
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useAnimation } from 'framer-motion';
 import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
 import { NeatGradient } from "@firecms/neat";
 
@@ -63,6 +63,27 @@ function HomePage() {
   const gradientInstance = React.useRef<any>(null);
   const heroRef = React.useRef<HTMLDivElement>(null);
 
+  // Only run the intro animation on desktop (>920px)
+  const [isDesktop] = React.useState(
+    () => typeof window !== 'undefined' && window.innerWidth > 920
+  );
+  const [introAnimating, setIntroAnimating] = React.useState(isDesktop);
+  const [textVisible, setTextVisible] = React.useState(!isDesktop);
+
+  // Pre-compute the scale values that map the canvas from its normal size to fullscreen.
+  // scaleX: stretch (100vw - 80px) → 100vw
+  // scaleY: stretch 80vh → 100vh  (= 1 / 0.8 = 1.25)
+  const [initCanvasScale] = React.useState(() => {
+    if (typeof window === 'undefined' || window.innerWidth <= 920) return null;
+    return {
+      scaleX: window.innerWidth / (window.innerWidth - 80),
+      scaleY: window.innerHeight / (window.innerHeight * 0.8),
+      borderRadius: 0,
+    };
+  });
+
+  const canvasControls = useAnimation();
+
   React.useEffect(() => {
     if (!gradientRef.current) return;
 
@@ -102,6 +123,32 @@ function HomePage() {
       gradientInstance.current = null;
     };
   }, []);
+
+  // Desktop-only intro: canvas starts fullscreen, springs into its hero position,
+  // then text animations are released.
+  React.useEffect(() => {
+    if (!isDesktop || !initCanvasScale) return;
+
+    const timer = setTimeout(() => {
+      canvasControls
+        .start({
+          scaleX: 1,
+          scaleY: 1,
+          borderRadius: 30,
+          transition: {
+            type: 'spring',
+            duration: 1.5,
+            bounce: 0.25,
+          },
+        })
+        .then(() => {
+          setIntroAnimating(false);
+          setTextVisible(true);
+        });
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [isDesktop, initCanvasScale, canvasControls]);
 
   React.useEffect(() => {
     const hero = heroRef.current;
@@ -169,17 +216,25 @@ function HomePage() {
     spring
   );
 
+  // Text animations are gated: on desktop they wait until the canvas intro finishes;
+  // on mobile textVisible is true from mount so they run immediately as before.
   const motionDivProps = (delay = 0, scale = 1, duration = 0.3, type = "") => ({
     initial: { y: "10px", opacity: 0 },
-    animate: { y: 0, opacity: 1, scale },
+    animate: textVisible ? { y: 0, opacity: 1, scale } : { y: "10px", opacity: 0 },
     transition: { duration, delay, type, bounce: 0.2, damping: 15, stiffness: 300 },
   });
 
   return (
     <Stack id="homePage" spacing={0}>
 
-      {/* Hero — sticky so it stays pinned while projects slide over it */}
-      <div id="heroSection" ref={heroRef}>
+      {/* Hero — sticky so it stays pinned while projects slide over it.
+          During the desktop intro, z-index is elevated above the navbar and
+          overflow is opened so the fullscreen canvas isn't clipped. */}
+      <div
+        id="heroSection"
+        ref={heroRef}
+        style={introAnimating && isDesktop ? { overflow: 'visible', zIndex: 9999 } : undefined}
+      >
         <motion.div
           className="heroContent"
           style={{
@@ -187,9 +242,13 @@ function HomePage() {
             willChange: 'auto',
           }}
         >
-          <canvas
+          {/* motion.canvas: starts fullscreen on desktop (via initCanvasScale initial),
+              then springs to its normal hero position. */}
+          <motion.canvas
             className="heroGradientCanvas"
             ref={gradientRef}
+            initial={initCanvasScale ?? false}
+            animate={canvasControls}
           />
           <MotionStack {...motionDivProps(0)} className="intro" spacing={5} style={{ width: "70vw" }}>
             <Box id="hiAndName">
@@ -209,7 +268,7 @@ function HomePage() {
               <MotionBox
                 className="scrollIndicatorWrapper"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={textVisible ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.3, delay: 1.3 }}
               >
                 <ScrollIndicator />

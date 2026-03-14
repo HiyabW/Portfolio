@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import { useLocation } from "react-router-dom";
+import { usePageTransition } from "../../context/TransitionContext.tsx";
 
 import "./Navbar.css";
 
@@ -15,6 +16,7 @@ function Navbar() {
     const [projectsInView, setProjectsInView] = React.useState(false);
     const location = useLocation();
     const currPage = location.pathname;
+    const { transitionTo } = usePageTransition();
 
     React.useEffect(() => {
         const projectsEl = document.getElementById("projects");
@@ -63,11 +65,38 @@ function Navbar() {
     ];
 
 
+    const handleNavClick = (
+        e: React.MouseEvent,
+        page: { name: string; link: string; route: string | null }
+    ) => {
+        if (page.name === "Resume") {
+            e.preventDefault();
+            window.open(page.link);
+            return;
+        }
+        if (page.route && !page.route.includes("#")) {
+            e.preventDefault();
+            transitionTo(page.route);
+        }
+    };
+
+    const handleLogoClick = (e: React.MouseEvent) => {
+        if (currPage !== "/") {
+            e.preventDefault();
+            transitionTo("/");
+        }
+    };
+
     return (
         <Box id="navbar">
             <Box>
                 <Typography className="navLogo subheader">
-                    <a href={`${currPage === "/" ? "#homePage" : "/"}`}>Hw</a>
+                    <a
+                        href={currPage === "/" ? "#homePage" : "/"}
+                        onClick={handleLogoClick}
+                    >
+                        Hw
+                    </a>
                 </Typography>
             </Box>
 
@@ -84,11 +113,7 @@ function Navbar() {
                     >
                         <a
                             href={page.name !== "Resume" ? page.link : undefined}
-                            onClick={() =>
-                                page.name === "Resume"
-                                    ? window.open(page.link)
-                                    : undefined
-                            }
+                            onClick={(e) => handleNavClick(e, page)}
                         >
                             {page.name}
                         </a>
@@ -128,9 +153,20 @@ function Navbar() {
                     sx={{ display: { xs: "block", md: "none" } }}
                 >
                     {pages.map((page) => (
-                        <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                        <MenuItem
+                            key={page.name}
+                            onClick={(e) => {
+                                handleCloseNavMenu();
+                                handleNavClick(e as unknown as React.MouseEvent, page);
+                            }}
+                        >
                             <Typography sx={{ textAlign: "center" }}>
-                                <a href={page.link}>{page.name}</a>
+                                <a
+                                    href={page.link}
+                                    onClick={(e) => handleNavClick(e, page)}
+                                >
+                                    {page.name}
+                                </a>
                             </Typography>
                         </MenuItem>
                     ))}
