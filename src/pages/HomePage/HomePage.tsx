@@ -10,11 +10,13 @@ import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimation } from 'framer-motion';
 import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
 import { NeatGradient } from "@firecms/neat";
+import { usePageTransition } from "../../context/TransitionContext.tsx";
 
 const MotionStack = motion(Stack);
 const MotionBox = motion(Box);
 
 function HomePage() {
+  const { transitionTo } = usePageTransition();
   const projects = [
     {
       id: 1,
@@ -292,7 +294,7 @@ function HomePage() {
                     onMouseLeave={() => setNameHover(false)}
                     onMouseMove={handleNameMouseMove}
                     style={{ position: "relative", cursor: "pointer", display: "inline-flex", alignSelf: "flex-start" }}
-                    onClick={() => window.location.href = "/about"}>
+                    onClick={() => transitionTo("/about")}>
                     <Typography variant="h1" id="asterisk">(*)</Typography>
                   </Box>
                 </Box>
