@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ProjectCard from "./components/ProjectCard/ProjectCard.tsx";
 import ContactIcons from "./components/ContactIcons/ContactIcons.tsx";
 import { useLocation } from "react-router-dom";
-import { motion, useScroll, useTransform, useSpring, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimation } from 'framer-motion';
 import ScrollIndicator from "./components/ScrollToProjects/ScrollToProjects.tsx";
 import { NeatGradient } from "@firecms/neat";
 
@@ -67,14 +67,39 @@ function HomePage() {
   const [isDesktop] = React.useState(
     () => typeof window !== 'undefined' && window.innerWidth > 920
   );
-  const [introAnimating, setIntroAnimating] = React.useState(isDesktop);
-  const [textVisible, setTextVisible] = React.useState(!isDesktop);
+
+  // Skip the intro when arriving via an internal navigation (e.g. from a project page).
+  // location.state is set by TransitionContext when it calls navigate().
+  const runIntroAnimation = isDesktop && !location.state?.internalNav;
+
+  const [introAnimating, setIntroAnimating] = React.useState(runIntroAnimation);
+  const [textVisible, setTextVisible] = React.useState(!runIntroAnimation);
+
+  const [nameHover, setNameHover] = React.useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Loosened spring so the image visibly lags and catches up
+  const smoothX = useSpring(mouseX, { stiffness: 80, damping: 15, mass: 0.4 });
+  const smoothY = useSpring(mouseY, { stiffness: 80, damping: 15, mass: 0.4 });
+
+  // Derive velocity from the already-smoothed X, then map it to a tilt angle.
+  // A separate, snappier spring on the rotation makes it feel physically separate
+  // from the position — move fast → card tilts, stop → springs back to 0.
+  const xVelocity = useVelocity(smoothX);
+  const rawRotate = useTransform(xVelocity, [-2000, 2000], [-26, 14]);
+  const rotateZ = useSpring(rawRotate, { stiffness: 180, damping: 28 });
+
+  const handleNameMouseMove = (e) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
 
   // Pre-compute the scale values that map the canvas from its normal size to fullscreen.
   // scaleX: stretch (100vw - 80px) → 100vw
   // scaleY: stretch 80vh → 100vh  (= 1 / 0.8 = 1.25)
   const [initCanvasScale] = React.useState(() => {
-    if (typeof window === 'undefined' || window.innerWidth <= 920) return null;
+    if (!runIntroAnimation || typeof window === 'undefined') return null;
     return {
       scaleX: window.innerWidth / (window.innerWidth - 80),
       scaleY: window.innerHeight / (window.innerHeight * 0.8),
@@ -127,28 +152,35 @@ function HomePage() {
   // Desktop-only intro: canvas starts fullscreen, springs into its hero position,
   // then text animations are released.
   React.useEffect(() => {
-    if (!isDesktop || !initCanvasScale) return;
+    if (!runIntroAnimation || !initCanvasScale) return;
 
-    const timer = setTimeout(() => {
-      canvasControls
-        .start({
-          scaleX: 1,
-          scaleY: 1,
-          borderRadius: 30,
-          transition: {
-            type: 'spring',
-            duration: 1.5,
-            bounce: 0.25,
-          },
-        })
-        .then(() => {
-          setIntroAnimating(false);
-          setTextVisible(true);
-        });
-    }, 200);
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
-    return () => clearTimeout(timer);
-  }, [isDesktop, initCanvasScale, canvasControls]);
+    const t = setTimeout(() => {
+      const animPromise = canvasControls.start({
+        scaleX: 1,
+        scaleY: 1,
+        borderRadius: 30,
+        transition: {
+          type: 'spring',
+          duration: 2.5,
+          bounce: 0.25,
+        },
+      });
+
+      // Show text well before the spring settles — intentional overlap.
+      const textT = setTimeout(() => setTextVisible(true), 800);
+      timers.push(textT);
+
+      animPromise.then(() => {
+        setIntroAnimating(false);
+        setTextVisible(true);
+      });
+    }, 0);
+
+    timers.push(t);
+    return () => timers.forEach(clearTimeout);
+  }, [runIntroAnimation, initCanvasScale, canvasControls]);
 
   React.useEffect(() => {
     const hero = heroRef.current;
@@ -253,14 +285,59 @@ function HomePage() {
           <MotionStack {...motionDivProps(0)} className="intro" spacing={5} style={{ width: "70vw" }}>
             <Box id="hiAndName">
               <Box id="name">
-                <Typography variant="h1">HIYAB</Typography>
+                <Box display="flex" flexDirection="row" gap={1}>
+                  <Typography variant="h1">HIYAB</Typography>
+                  <Box
+                    onMouseEnter={() => setNameHover(true)}
+                    onMouseLeave={() => setNameHover(false)}
+                    onMouseMove={handleNameMouseMove}
+                    style={{ position: "relative", cursor: "pointer", display: "inline-flex", alignSelf: "flex-start" }}
+                    onClick={() => window.location.href = "/about"}>
+                    <Typography variant="h1" id="asterisk">(*)</Typography>
+                  </Box>
+                </Box>
+                <AnimatePresence>
+                  {nameHover && (
+                    <motion.div
+                      key="namePreview"
+                      style={{
+                        position: "fixed",
+                        left: smoothX,
+                        top: smoothY,
+                        x: 40,
+                        y: 30,
+                        translateX: "-50%",
+                        translateY: "-50%",
+                        zIndex: 2000,
+                        rotate: rotateZ,
+                        pointerEvents: "none",
+                      }}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 180, damping: 18 }}
+                    >
+                      <img
+                        src="/images/headshot.webp"
+                        alt="preview"
+                        style={{
+                          width: 200,
+                          borderRadius: 16,
+                          boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
+                          pointerEvents: "none",
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <Typography variant="h1">WOLDE&shy;GEBRIEL</Typography>
+
               </Box>
             </Box>
             <MotionBox {...motionDivProps(0.3)}>
               <Typography className="introDesc">
-                I'm a Full Stack Developer and UI/UX Designer with{" "}
-                <b>3+ years of industry experience</b> in crafting digital solutions to real life problems.
+                Is a Full Stack Developer and Product Designer with{" "}
+                <b>industry experience</b> in crafting digital solutions to real life problems.
               </Typography>
             </MotionBox>
             <MotionBox {...motionDivProps(0.6, 1, 0.1, "spring")}>

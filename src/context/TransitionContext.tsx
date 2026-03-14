@@ -27,7 +27,7 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
 
     const onCoverComplete = useCallback(() => {
         if (pendingPath.current) {
-            navigate(pendingPath.current);
+            navigate(pendingPath.current, { state: { internalNav: true } });
             window.scrollTo(0, 0);
             pendingPath.current = null;
             requestAnimationFrame(() => {

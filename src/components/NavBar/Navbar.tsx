@@ -74,6 +74,13 @@ function Navbar() {
             window.open(page.link);
             return;
         }
+        // When clicking Projects from outside the homepage, use transitionTo so
+        // internalNav:true is set and the intro animation is suppressed.
+        if (page.name === "Projects" && currPage !== "/") {
+            e.preventDefault();
+            transitionTo("/#projects");
+            return;
+        }
         if (page.route && !page.route.includes("#")) {
             e.preventDefault();
             transitionTo(page.route);
